@@ -1,0 +1,27 @@
+services:
+  app:
+    build:
+        context: .
+        dockerfile: Dockerfile
+
+    command:
+      - --host=0.0.0.0
+      - --port=9555
+      - "--reload"
+      - "--reload-exclude=scripts/*"
+      - "--reload-exclude=tests/*"
+      - "--log-level=debug"
+
+    ports:
+      - "9555:9555"
+    volumes:
+      - ./scripts:/usr/src/app/scripts
+
+    environment:
+      - AZURE_SPONSOR_API_KEY=${AZURE_SPONSOR_API_KEY}
+      - AZURE_OPENAI_ENDPOINT=https://jumbomana-sponsorship.openai.azure.com
+      - OPENAI_API_VERSION=2024-10-21
+    env_file:
+      - path: ./.env
+        required: false
+    tty: true
