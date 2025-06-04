@@ -1,0 +1,57 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.3.0
+    hooks:
+      - id: check-yaml
+        exclude: ^chart/templates
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: detect-private-key
+      - id: name-tests-test
+        args: [--pytest-test-first]
+        exclude: ^tests/data/
+  - repo: https://github.com/radix-ai/auto-smart-commit
+    rev: v1.0.3
+    hooks:
+      - id: auto-smart-commit
+  - repo: https://github.com/PyCQA/autoflake
+    rev: v2.2.1
+    hooks:
+      - id: autoflake
+        args:
+          [
+            --remove-all-unused-imports,
+            --in-place,
+            --ignore-init-module-imports,
+          ]
+  - repo: https://github.com/psf/black-pre-commit-mirror
+    rev: 24.4.2
+    hooks:
+      - id: black
+        args: [--line-length=110]
+        exclude: ^database_migrations/
+  - repo: https://github.com/pre-commit/mirrors-isort
+    rev: v5.10.1
+    hooks:
+      - id: isort
+        name: isort (python)
+        entry: isort
+        language: python
+        files: \.py$
+        args: ["--profile", "black"]
+        exclude: ^database_migrations/
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.3.0
+    hooks:
+      - id: codespell
+        args: ["-L", "CO,IR,OT,RC,DA,Komma,nd,oder, interm", "--quiet-level", "3", "--write-changes"]
+        name: codespell
+        description: Checks for common misspellings in text files.
+        language: python
+        files: \.py$|\.md$
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.9.0
+    hooks:
+      - id: ruff
+        args: ["--select=TID252"]
+        stages: [pre-commit]
