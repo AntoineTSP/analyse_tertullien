@@ -16,6 +16,7 @@ services:
       - "9555:9555"
     volumes:
       - ./scripts:/usr/src/app/scripts
+      - ./data:/usr/src/app/data
 
     environment:
       - AZURE_SPONSOR_API_KEY=${AZURE_SPONSOR_API_KEY}
