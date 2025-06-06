@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>{{ title }}</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .credit-images img { max-height: 100px; margin-right: 10px; }
+        .buttons button {
+            margin: 5px;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ title }}</h1>
+    <p>{{ description }}</p>
+
+    <div class="credit-images">
+        {% for image in credit_images %}
+            <img src="{{ image.src }}" alt="{{ image.alt }}" />
+        {% endfor %}
+    </div>
+
+    <div class="buttons">
+        {% for button in buttons %}
+            <button onclick="location.href='{{ button.url }}'">{{ button.name }}</button>
+        {% endfor %}
+    </div>
+</body>
+</html>
