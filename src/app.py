@@ -169,3 +169,10 @@ async def render_full2_tei(request: Request):
 async def get_annotation(request: Request):
     annotations = get_all_annotations(xml_path="./data/xml/Pall2")
     return JSONResponse(content=annotations)
+
+
+@app.get("/get_some_annotation")
+async def get_some_annotation(request: Request):
+    annotations = get_all_annotations(xml_path="./data/xml/Pall2")
+    annotations = annotations.get("metaphore", [])
+    return JSONResponse(content=annotations)
