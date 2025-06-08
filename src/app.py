@@ -2,7 +2,6 @@ import os
 from pathlib import Path
 
 from fastapi import FastAPI, Request, Response
-from fastapi.requests import Request
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -10,7 +9,12 @@ from keras.models import load_model
 
 from embedding.embedding_factory import EmbeddingFactory
 from preprocess.lemmatiseur import PyrrhaLemmatiseur
-from utils.converter import add_title_to_spans, get_model_summary, parse_full_tei
+from utils.converter import (
+    add_title_to_spans,
+    get_all_annotations,
+    get_model_summary,
+    parse_full_tei,
+)
 
 app = FastAPI()
 app.mount("/img", StaticFiles(directory="static/img"), name="img")
@@ -146,7 +150,7 @@ async def dashboard(request: Request):
 
 @app.get("/xml", response_class=Response)
 async def get_xml():
-    xml_path = Path("./data/xml/Idol.xml")
+    xml_path = Path("./data/xml/Pall2.xml")
     if not xml_path.exists():
         return Response(content="File not found", status_code=404)
 
@@ -156,6 +160,12 @@ async def get_xml():
 
 @app.get("/xml_to_html", response_class=HTMLResponse)
 async def render_full2_tei(request: Request):
-    data = parse_full_tei("./data/xml/Val_2.xml")  # your function generating html string
+    data = parse_full_tei("./data/xml/Pall2.xml")  # your function generating html string
     data["body_html"] = add_title_to_spans(data["body_html"])
     return templates.TemplateResponse("xml.html", {"request": request, **data})
+
+
+@app.get("/get_annotation")
+async def get_annotation(request: Request):
+    annotations = get_all_annotations(xml_path="./data/xml/Pall2")
+    return JSONResponse(content=annotations)

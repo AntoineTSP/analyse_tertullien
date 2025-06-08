@@ -44,7 +44,7 @@ repos:
     rev: v2.3.0
     hooks:
       - id: codespell
-        args: ["-L", "CO,IR,OT,RC,DA,Komma,nd,oder, interm", "--quiet-level", "3", "--write-changes"]
+        args: ["-L", "CO,IR,OT,RC,DA,Komma,nd,oder, interm, metaphore, exemple, comparaison", "--quiet-level", "3", "--write-changes"]
         name: codespell
         description: Checks for common misspellings in text files.
         language: python

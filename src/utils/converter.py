@@ -1,6 +1,9 @@
+import xml.etree.ElementTree as ET
 from io import StringIO
 from pathlib import Path
+from xml.etree import cElementTree as ET
 
+import lxml.etree as etree
 from lxml import etree, html
 from tensorflow.keras import Model
 
@@ -125,3 +128,45 @@ def add_title_to_spans(html_string: str) -> str:
 
     # Serialize back to string, preserving the inner HTML structure
     return html.tostring(tree, encoding="unicode", method="html")
+
+
+def get_all_annotations(xml_path: str):
+    xmlstr = ET.parse(f"{xml_path}.xml")
+    root = xmlstr.getroot()
+    new_root = root[1][0]
+
+    annotations = {
+        "metaphore": {},
+        "comparaison": {},
+        "personnification": {},
+        "enargeia": {},
+        "dialogisme": {},
+        "deductio_ad_absurdum": {},
+        "symbolisme": {},
+        "exemple": {},
+        "militaire": {},
+        "retorsion_inversée": {},
+        "irreel": {},
+        "epiphoneme": {},
+        "ab_absurdo": {},
+        "ab_origine": {},
+        "calembour": {},
+        "dicton": {},
+        "prosopopeia": {},
+        "scene": {},
+        "corps": {},
+    }
+
+    for i in range(len(new_root[2])):
+        chapter_header = f"Chapitre {i + 1}"
+
+        for key, value in annotations.items():
+            value[chapter_header] = []
+
+        for deep6 in new_root[2][i][0]:
+            ana = deep6.attrib.get("ana")
+            if ana and ana in annotations:
+                content = " ".join((deep6.text or "").split())
+                annotations[ana][chapter_header].append(content)
+
+    return annotations
