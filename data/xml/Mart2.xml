@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?> <?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="Mart1853">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title>Ad martyras</title>
+            <author>
+               <persName xml:id="Tertullien">
+                  <forename>Quintus</forename>
+                  <surname>Florens Septimius Tertullianus</surname>
+                  <ref type="isni" target="https://isni.org/isni/0000000122834506"/>
+               </persName>
+            </author>
+            <respStmt>
+               <persName xml:id="MS">Mathilde Schwoerer</persName>
+               <resp><date>5 mars 2023</date>Encodeuse</resp>
+            </respStmt>
+         </titleStmt>
+         <publicationStmt>
+            <authority>Université de Strasbourg</authority>
+            <availability>
+               <licence target="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+                  Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0) </licence>
+            </availability>
+         </publicationStmt>
+         <sourceDesc>
+            <listWit>
+               <witness xml:id="Oehler1853">
+                  <bibl>
+                     <author ref="#Tertullien">
+                        <forename>Quintus</forename>
+                        <surname>Florens Septimius Tertullianus</surname>
+                     </author>
+                     <title>
+                        <title type="main">Tertulliani opera quae supersunt. Ad martyras</title>
+                     </title>
+                     <publisher>
+                        <persName xml:id="Oehler">
+                           <forename>Francis</forename>
+                           <surname>Oehler</surname>
+                           <ref type="isni" target="https://isni.org/isni/0000000116782287"/>
+                        </persName>
+                     </publisher>
+                     <publisher>CSEL</publisher>
+                     <pubPlace>Leipzig</pubPlace>
+                     <date when="1853">1853</date>
+                     <biblScope unit="page" n="3-16"> p. 3-16</biblScope>
+                     <ptr type="tertullian.org" target="https://www.tertullian.org/latin/ad_martyres.htm"/>
+                  </bibl>
+               </witness>
+            </listWit>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <projectDesc>
+            <p>Encodage en XML de textes de Tertullien avec mise en valeur de certains procédés d'écriture figurée</p>
+         </projectDesc>
+         <editorialDecl>
+            <normalization>
+               <p>Transformation des -v en -u et des -j en -i.</p>
+            </normalization>
+            <punctuation>
+               <p>La ponctuation est harmonisée sur les usages des éditions de Turcan et de Fredouille (ajout de la majuscule en début de phrase, ajout d'un espace entre un double-point, un point-virgule, un point d'interrogation ou d'exclamation et le mot qui précède). </p>
+            </punctuation>
+         </editorialDecl>
+      </encodingDesc>
+      <profileDesc>
+         <langUsage>
+            <language ident="fr">Français</language>
+            <language ident="la">Latin</language>
+         </langUsage>
+      </profileDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <head type="main">Ad martyras</head>
+         <head type="sub">Encodage des images littéraires</head>
+         <div1 type="edition" xml:lang="la">
+            <div2 type="textpart" subtype="chapter" n="1">
+               <p>I. [1] Inter carnis alimenta, benedicti martyres designati, quae uobis et <span ana="metaphore" type="corps">domina mater ecclesia de uberibus suis</span>
+             et singuli fratres de
+            opibus suis propriis in carcerem subministrant, capite aliquid et
+            a nobis, quod faciat <span ana="metaphore" type="nourriture">ad spiritum quoque educandum. Carnem enim saginari et spiritum esurire non prodest.</span>. Immo si quod infirmum est curatur, aeque quod infirmius est neglegi non debet.
+            [2] Nec tantus ego sum, ut uos alloquar. <span ana="metaphore" type="gladiateurs">Verumtamen et gladiatores perfectissimos non tantum magistri et praepositi sui, sed etiam idiotae et superuacue quique adhortantur de longinquo, ut saepe
+            de ipso populo dictata suggesta profuerint.</span>
+            [3] Inprimis ergo, benedicti,
+            <quote n="Eph 4, 30"> nolite contristare spiritum sanctum, qui uobiscum introiit
+               carcerem</quote>. Si enim non uobiscum nunc introisset, nec uos illic
+            hodie fuissetis. Et ideo date operam, ut illic uobiscum perseueret :
+            ita uos inde perducat ad dominum.
+            [4] <span ana="metaphore" type="prison">Domus quidem diaboli
+            est et carcer, in qua familiam suam continet</span>. Sed uos ideo in carcerem
+            peruenistis, <span ana="metaphore" type="maison">ut illum etiam in domo sua conculcetis</span>. Iam
+                  enim foris congressi conculcaueratis.
+            [5] <span ana="prosopopeia">Non ergo dicat : In meo sunt,
+            temptabo illos uilibus odiis, defectionibus aut inter se dissensionibus.</span>
+            Fugiat conspectum uestrum et in ima sua delitescat
+            <span ana="comparaison" type="serpent">contractus et torpens, tamquam coluber excantatus aut effumigatus.</span>
+            Nec illi tam bene sit in suo regno, ut uos commitat, <span ana="metaphore" type="militaire">sed inueniat munitos et concordia armatos, quia pax uestra bellum est illi.</span>
+            [6] Quam pacem quidam in ecclesia non habentes a martyribus in
+            carcere exorare consueuerunt. Et ideo eam propterea in uobis
+            habere et fouere et custodire debetis, ut, si forte, et aliis praestare
+            possitis.</p>
+         </div2>
+            <div2 type="textpart" subtype="chapter" n="2">
+            <p> II. [1] Cetera aeque animi impedimenta usque ad limen carceris deduxerint uos,
+               quousque et parentes uestri. Exinde segregati estis ab ipso mundo, quanto
+               magis a saeculo rebusque eius ? Nec hoc uos consternet, quod segregati estis
+               a mundo. <span ana="metaphore" type="monde">Si enim recogitemus ipsum magis mundum carcerem esse, exisse uos e
+               carcere, quam in carcerem introisse, intellegemus.</span>
+               [2] <span ana="metaphore" type="lumiere">Maiores tenebras habet, quae hominum praecordia excaecant.</span>
+               <span ana="metaphore" type="prison">Grauiores catenas induit mundus, quae ipsas animas hominum constringunt.</span>
+               <span ana="metaphore" type="souillure">Peiores immunditias <span ana="metaphore" type="souffle">exspirat mundus</span>, libidines hominum.</span>
+               [3] <span ana="metaphore" type="tribunal">Plures postremo mundus reos continet, scilicet uniuersum hominum genus. </span>
+               Iudicia denique non proconsulis, sed Dei sustinet.
+               [4] Quo uos, benedicti, de carcere in custodiarium, si forte, translatos
+               existimetis. <span ana="metaphore" type="lumiere">Habet tenebras, sed lumen estis ipsi ;</span> <span ana="metaphore" type="prison">habet uincula, sed uos
+               soluti Deo estis</span>. <span ana="metaphore" type="souffle">Triste illic exspirat, sed uos odor estis suauitatis.</span>
+               Iudex exspectatur, sed uos estis de iudicibus ipsis iudicaturi.
+               [5] Contristetur illic qui fructum saeculi suspirat. Christianus etiam extra
+               carcerem saeculo renuntiauit, in carcere autem etiam carceri. Nihil
+               interest, ubi sitis in saeculo, qui extra saeculum estis.
+               [6] Et si aliqua amisistis uitae gaudia : <quote type="dicton?">« Negotiatio est aliquid amittere,
+               ut maiora lucreris.»</quote> Nihil adhuc dico de praemio, ad quod Deus martyres
+               inuitat. Ipsam interim conuersationem saeculi et carceris comparemus,
+               si non plus in carcere spiritus acquirit quam caro amittit.
+               [7] Immo et quae iusta sunt caro non amittit per curam ecclesiae et
+               agapen fratrum ; et insuper quae semper utilia fidei, spiritus adipiscitur :
+               non uides alienos deos, non imaginibus eorum incurris,
+               non sollemnes nationum dies ipsa commixtione participas,
+               non nidoribus spurcis uerberaris, non clamoribus spectaculorum,
+               atrocitate uel furore uel impudicitia celebrantium caederis ;
+               non in loca libidinum publicarum oculi tui impingunt : uacas a scandalis,
+               a temptationibus, a recordationibus malis, iam et a persecutione.
+               [8] <span ana="metaphore" type="prison">Hoc praestat carcer Christiano, quod eremus prophetis.
+               Ipse Dominus in secessu frequentius agebat, ut liberius oraret,
+               ut saeculo cederet. Gloriam denique suam discipulis in solitudine demonstrauit.
+               Auferamus carceris nomen, secessum uocemus</span>.
+               [9] Etsi corpus includitur, etsi caro detinetur, omnia spiritui patent.
+               Vagare spiritu, spatiare spiritu, <span ana="metaphore" type="lieu">et non stadia opaca aut porticus
+               longas proponens tibi, sed illam uiam, quae ad Deum ducit.</span>
+               Quotiens eam spiritu deambulaueris, totiens in carcere non eris.
+               [10] <span ana="corps">Nihil crus sentit in neruo, cum animus in caelo est.</span> Totum hominem
+               animus circumfert, et quo uelit transfert.
+               <quote n="Mt 6,21">Ubi autem erit cor tuum, illic erit et thesaurus tuus</quote>.
+               <span ana="metaphore" type="coeur">Ibi ergo sit cor nostrum, ubi uolumus
+               habere thesaurum</span>.</p>
+            </div2>
+               <div2 type="textpart" subtype="chapter" n="3">
+               <p>III. [1] Sit nunc, benedicti, carcer etiam Christianis molestus.
+                  <span ana="metaphore" type="militaire">Vocati sumus ad militiam Dei uiui iam tunc</span>, cum in sacramenti uerba respondimus.
+                  <span ana="metaphore" type="militaire"> Nemo miles ad bellum cum deliciis uenit, nec de cubiculo ad aciem procedit,
+                  sed de papilionibus expeditis et substrictis, ubi omnis duritia et inbonitas
+                  et insuauitas constitit.</span>
+                  [2] <span ana="enargeia">Etiam in pace labore et incommodis bellum pati iam ediscunt,
+                  in armis deambulando, campum decurrendo, fossam moliendo,
+                  testudinem densando. Sudore omnia constant, ne corpora atque
+                  animi expauescant de umbra ad solem et sole ad gelum, de tunica
+                  ad loricam, de silentio ad clamorem, de quiete ad tumultum.</span>
+                  [3] Proinde uos, benedicti, quodcumque hoc durum est, <span ana="metaphore" type="militaire">ad exercitationem
+                  uirtutum animi et corporis deputate</span>. <span ana="metaphore" type="militaire">Bonum agonem subituri estis in
+                  quo agonothetes Deus uiuus est, xystarches Spiritus Sanctus, corona
+                  aeternitatis</span>, brabium angelicae substantiae, politia in caelis,
+                  gloria in saecula saeculorum.
+                  [4] <span ana="metaphore" type="gladiateur">Itaque epistates uester Christus Iesus, qui uos Spiritu unxit</span>, <span ana="metaphore" type="gladiateur">et
+                  ad hoc scamma produxit</span>, uoluit uos ante diem agonis ad duriorem tractationem
+                  a liberiore condicione seponere, ut uires corroborarentur in uobis. <span ana="comparaison" type="gladiateur">Nempe enim
+                  et athletae segregantur ad strictiorem disciplinam</span>, ut robori aedificando uacent.
+                  Continentur a luxuria, a cibis laetioribus, a potu iucundiore. Coguntur, cruciantur,
+                  fatigantur : quanto plus in exercitationibus laborauerint, tanto plus de uictoria sperant.
+                  [5] Et illi, inquit Apostolus, <quote n="1 Cor 9,25">ut coronam corruptibilem consequantur</quote>. Nos aeternam consecuturi
+                  carcerem nobis pro palaestra interpretamur, <span ana="metaphore" type="gladiateur">ut ad stadium tribunalis bene exercitati
+                  incommodis omnibus producamur, quia uirtus duritia exstruitur, mollitia uero destruitur</span>.</p>
+               </div2>
+
+         <div2 type="textpart" subtype="chapter" n="4">
+            <p>IV. [1] Scimus ex dominico praecepto, quod caro infirma sit, spiritus promptus. Non ergo nobis blandiamur, quia Dominus consensit carnem infirmam esse.
+               Propterea enim praedixit spiritum promptum, ut ostenderet, quid cui debeat
+               esse subiectum, scilicet, ut caro seruiat spiritui, infirmior fortiori,
+               ut ab eo etiam ipsa fortitudinem assumat.
+               [2] <span ana="metaphore" type="militaire">Colloquatur spiritus cum carne de communi salute, nec iam de incommodis carceris,
+               sed de ipso agone et proelio cogitans.</span> <span ana="personnification">Timebit forsitan caro gladium grauem,
+               et crucem excelsam, et rabiem bestiarum, et summam ignium poenam,
+               et omne carnificis ingenium in tormentis.</span>
+               [3] <span ana="personnification">Sed spiritus contraponat sibi et carni : acerba licet ista, a multis tamen aequo animo excepta,
+               immo et ultro appetita, famae et gloriae caus</span>a ; nec a uiris tantum, sed etiam a feminis,
+               ut uos quoque, benedictae, sexui uestro respondeatis.
+               [4] Longum est, si enumerem singulos, qui se gladio confecerint, animo suo ducti.
+               De feminis ad manum est Lucretia, quae uim stupri passa cultrum sibi adegit
+               in conspectu propinquorum, ut gloriam castitati suae pareret. Mucius dexteram
+               suam in ara cremauit, ut hoc factum eius fama haberet.
+               [5] Nec minus fecerunt philosophi : Heraclitus, qui se bubulo stercore oblitum excussit ;
+               item Empedocles, qui in ignes Aetnaei montis desiliuit ; et Peregrinus, qui non olim
+               se rogo immisit, cum feminae quoque contempserint ignes : Dido, ne post uirum
+               dilectissimum nubere cogeretur ; item Asdrubalis uxor, quae iam ardente Carthagine,
+               ne maritum suum supplicem Scipionis uideret, cum filiis suis in incendium patriae deuolauit.
+               [6] Regulus, dux Romanorum, captus a Carthaginensibus, cum se unum pro multis captiuis
+               Carthaginensibus compensari noluisset, maluit hostibus reddi et in arcae genus stipatus
+               undique extrinsecus clauis transfixus, tot cruces sensit. Bestias femina libens appetiit,
+               et utique aspides, serpentes tauro uel urso horridiores, quas Cleopatra immisit sibi,
+               ne in manus inimici perueniret.
+               [7]<span ana="dialogisme">Sed mortis metus non tantus est, quantus est tormentorum.</span>
+               Itaque cessit carnifici meretrix Atheniensis ? Quae conscia coniurationis cum propterea
+               torqueretur a tyranno, et non prodidit coniuratos et nouissime <span ana="metaphore" type="nourriture">linguam suam comestam</span>
+               in faciem tyranni exspuit, ut nihil agere in se sciret tormenta, etsi ultra perseuerarent.
+               [8] Nam quod hodie apud Lacedaemonas sollemnitas maxima est, διαμαστίγωσις, id est,
+               flagellatio, non latet. In quo sacro, ante aram nobiles quique adolescentes
+               flagellis affliguntur, astantibus parentibus et propinquis,
+               et uti perseuerent adhortantibus. Ornamentum enim et gloria deputatur
+               maiore quidem titulo, si anima potius cesserit plagis, quam corpus.
+               [9] Igitur si tantum terrenae gloriae licet de corporis et animae uigore,
+               ut gladium, ignem, crucem, bestias, tormenta contemnat sub praemio laudis
+               humanae, possum dicere, modicae sunt istae passiones ad consecutionem gloriae
+               caelestis et diuinae mercedis. <span ana="metaphore" type="perle">Si tanti uitreum, quanti uerum margaritum?</span>
+               Quis ergo non libentissime tantum pro uero habet erogare, quantum alii pro falso ?</p>
+         </div2>
+            <div2 type="textpart" subtype="chapter" n="5">
+               <p>V. [1] Omitto nunc gloriae causam. Eadem omnia saeuitiae et cruciatus certamina
+                  iam apud homines <span ana="comparaison" type="maladie">affectatio quoque et morbus quidam animi</span> conculcauit.
+                  <span type="corps">Quot otiosos affectatio armorum ad gladium locat ? Certe ad feras ipsas affectatione
+                  descendunt <span ana="enargeia" type="corps">et de morsibus et de cicatricibus formosiores sibi uidentur</span>. Iam et ad ignes
+                  quidam se auctorauerunt, ut certum spatium in tunica ardente conficerent.
+                  Alii inter uenatorum taureas scapulis patientissimis inambulauerunt.</span>
+                  [2] Haec, benedicti, non sine causa Dominus in saeculum admisit, sed ad nos et nunc
+                  exhortandos et in illo die confundendos, si reformidauerimus pati pro ueritate
+                  in salutem, quae alii affectauerunt pro uanitate in perditionem.
+               </p>
+            </div2>
+            <div2 type="textpart" subtype="chapter" n="6">
+               <p>VI. [1] Sed haec exempla constantiae omittamus de affectatione uenientis. Conuertamur ad
+                  ipsam condicionis humanae contemplationem, ut et illa nos instruant, si qua
+                  constanter adeunda sint, quae et inuitis euenire consueuerunt. <span ana="enargeia" type="corps">Quotiens enim
+                  incendia uiuos cremauerunt ! Quotiens ferae et in siluis suis et in mediis ciuitatibus
+                  elapsae caueis homines deuorauerunt ! Quot a latronibus ferro, ab hostibus etiam cruce
+                  extincti sunt, torti prius, immo et omni contumelia expuncti !</span>
+                  [2] Nemo non etiam hominis causa pati potest, quod in causa Dei pati dubitat.
+                  Ad hoc quidem uel praesentia nobis tempora documenta sint, quantae qualesque
+                  personae inopinatos natalibus et dignitatibus et corporibus et aetatibus suis
+                  exitus referunt hominis causa : aut ab ipso, si contra eum fecerint, aut
+                  ab aduersariis eius, si pro eo steterint.
+               </p>
+            </div2>
+         </div1>
+      </body>
+  </text>
+</TEI>

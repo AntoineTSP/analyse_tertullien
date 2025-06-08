@@ -1,0 +1,1028 @@
+<?xml version="1.0" encoding="UTF-8"?> <?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="Val1980">
+ <teiHeader>
+  <fileDesc>
+   <titleStmt>
+    <title>Adversus Valentinianos</title>
+    <author>
+     <persName xml:id="Tertullien">
+      <forename>Quintus</forename>
+      <surname>Florens Septimius Tertullianus</surname>
+      <ref type="isni" target="https://isni.org/isni/0000000122834506"/>
+     </persName>
+    </author>
+    <respStmt>
+     <persName xml:id="MS">Mathilde Schwoerer</persName>
+     <resp><date>15 mars 2023</date>Encodeuse</resp>
+    </respStmt>
+   </titleStmt>
+   <publicationStmt>
+    <authority>Université de Strasbourg</authority>
+    <availability>
+     <licence target="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+      Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0) </licence>
+    </availability>
+   </publicationStmt>
+   <sourceDesc>
+    <listWit>
+     <witness xml:id="Fredouille1980">
+      <bibl>
+       <author ref="#Tertullien">
+        <forename>Quintus</forename>
+        <surname>Florens Septimius Tertullianus</surname>
+       </author>
+       <title>
+        <title type="main">Adversus Valentinianos. Contre les Valentiniens</title>
+       </title>
+       <publisher>
+        <persName xml:id="Fredouille">
+         <forename>Jean-Claude</forename>
+         <surname>Fredouille</surname>
+         <ref type="isni" target="https://isni.org/isni/0000000110314001"/>
+        </persName>
+       </publisher>
+       <pubPlace>Paris</pubPlace>
+       <date when="1980">1980</date>
+       <ptr type="https://about.brepolis.net/sources-chretiennes-online-sco/" />
+      </bibl>
+     </witness>
+    </listWit>
+   </sourceDesc>
+  </fileDesc>
+  <encodingDesc>
+   <projectDesc>
+    <p>Encodage en XML de textes de Tertullien avec mise en valeur de certains procédés d'écriture figurée</p>
+   </projectDesc>
+   <editorialDecl>
+    <normalization>
+     <p>Aucune intervention (segmentation, abréviations, etc.)</p>
+    </normalization>
+    <punctuation>
+     <p>La ponctuation reprend celle de Fredouille.</p>
+    </punctuation>
+   </editorialDecl>
+  </encodingDesc>
+  <profileDesc>
+   <langUsage>
+    <language ident="fr">Français</language>
+    <language ident="la">Latin</language>
+   </langUsage>
+  </profileDesc>
+ </teiHeader>
+  <text>
+      <body>
+         <head type="main">Adversus Valentinianos</head>
+         <head type="sub">Encodage des images littéraires</head>
+         <div1 type="edition" xml:lang="la">
+            <div2 type="textpart" subtype="chapter" n="1">
+         <p>I. [1] Valentiniani, frequentissimum plane collegium inter haereticos,
+            quia, plurimum ex apostatis ueritatis, et ad fabulas
+            facile est et disciplina non terretur, nihil magis curant quam
+            occultare quod praedicant ; si tamen praedicant qui occultant.
+            <span ana="metaphore" type="déguisement">Custodiae officium conscientiae offucium est.</span> Confusio praedicatur,
+            dum religio adseueratur. <span ana="comparaison" type="culture_classique">Nam et illa Eleusinia, haeresis
+            et ipsa Atticae superstitionis, quod tacent, pudor est.</span> 2. Idcirco
+            et aditum prius cruciant, diutius initiant, quam consignant,
+            cum epoptas ante quinquennium instituunt, ut opinionem
+            suspendio cognitionis aedificent atque ita tantam maiestatem
+            exhibere uideantur, quantam praestruxerunt cupiditatem. Sequitur
+            iam silentii officium. 3. Adtente custoditur quod tarde inuenitur.
+            Ceterum tota in adytis diuinitas, tota suspiria epoptarum,
+            totum signaculum linguae simulacrum membri uirilis reuelatur.
+            Sed naturae uenerandum nomen allegorica dispositio praetendens
+            patrocinio coactae figurae sacrilegium obscurat et conuicium
+            falsis simulacris excusat. Proinde quos nunc destinamus
+            haereticos sanctis nominibus et titulis et argumentis uerae
+            religionis uanissima atque turpissima figmenta configurantes,
+            faciliate clara ex diuinae copiae occasione, <span ana="metaphore" type="coupure">quia de
+            multis multa succidere est</span>, Eleusinia Valentiniana fecerunt,
+            lenocinia sancta silentio magna, sola taciturnitate caelestia.
+            4. <span ana="enargeia">Si bona fide quaeras, concreto uultu, suspenso supercilio
+            "altum est" aiunt. Si subtiliter temptes, per ambiguitates
+            bilingues communem fidem adfirmant. Si scire te subostendas,
+            negant quicquid agnoscunt ; si cominus certes, tuam simplicitatem
+            sua caede dispergunt. Ne discipulis quidem propriis
+            ante committunt quam suos fecerint. Habent artificium quo
+            prius persuadeant quam edoceant. Veritas autem docendo
+            persuadet, non suadendo docet</span>.</p>
+            </div2>
+            <div2 type="textpart" subtype="chapter" n="2">
+               <p>II. [1] Ideoque simplices notamur apud illos, ut hoc tantum,
+                  non etiam sapientes ; quasi statim deficere cogatur a simplicitate
+                  sapientia, domino utramque iungente : <quote n="Mt 10, 16">Estote prudentes
+                     ut serpentes et simplices ut columbae</quote>. Aut si nos propterea
+                  insipientes, quia simplices, num ergo et illi propterea
+                  non simplices, quia sapientes ? Nocentissimi autem qui non
+                  - simplices, sicut stultissimi qui non sapientes. Et tamen malim
+                  meam partem meliori sumi uitio, si forte : praestat minus
+                  sapere quam peius, errare quam fallere. <quote n="Sag 1, 1">Porro facies Dei
+                     spectatur in simplicitate quaerendi, ut docet ipsa Sophia</quote>,
+                  non quidem Valentini, sed Solomonis. Deinde <quote n="Mt 2, 16">infantes  testimonium Christi sanguine litauerunt</quote>. <quote n="Mt 27, 22-23 ; Jn 19, 6">Pueros uocem qui
+                  crucem clamant ?</quote> Nec pueri erant nec infantes, id est simplices
+                  non erant. <quote n="Mt 18, 3">Repuerescere nos et apostolus iubet secundum
+                  dominum</quote>, ut malitia infantes per simplicitatem ita demum
+                  sapientes sensibus : simul dedit sapientiae ordinem de
+                  simplicitate manandi. 4. <span ana="symbolisme">In summa : columba demonstrare Christum
+                  solita est, serpens uero temptare; illa est a primordio diuinae
+                  pacis praeco, ille a primordio diuinae imaginis praedo. ita
+                  facilius simplicitas sola deum et agnoscere poterit et ostendere
+                  prudentia sola. [concutere potius et prodere]</span>.</p>
+            </div2>
+            <div2 type="textpart" subtype="chapter" n="3">
+               <p>
+                 III. [1] <span ana="symbolisme">Abscondat itaque se serpens, quantum potest, totamque
+                  prudentiam in latebrarum ambagibus torqueat; alte habitet,
+                  in caeca detrudat per amfractus seriem suam; (si) euoluat,
+                  tortuose procedat nec semel totus, lucifuga bestia. nostrae
+                  columbae etiam domus simplex, in editis semper et apertis
+                  et ad lucem. Amat figura spiritus sancti orientem, Christi
+                  figuram.</span> <span ana="personnification">Nihil ueritas erubescit nisi solummodo abscondi</span>;
+                  quia nec pudebit ullum aures ei dedere, eum deum recognoscere,
+                  quem iam illi natura commisit, quem cotidie in operibus
+                  omnibus sentit, hoc solo minus notum, quod unicum non putauit, quod in numero nominauit, quod in aliis adorauit.
+                  alioquin a turba eorum et aliam frequentiam suadere, a
+                  domestico principatu ad incognitum transmouere, a manifesto
+                  ad occultum retorquere de limine fidem offendere est. <span ana="comparaison" type="conte">Iam si
+                  et in totam fabulam initietur, nonne tale aliquid recordabitur
+                  se in infantia inter somni difficultates a nutricula audisse Lamiae tuures et pectines Solis ?</span>
+                  Sed qui ex aliqua conscientia uenerit fidei, si statim inueniat tot nomina Aeonum, tot
+                  coniugia, tot genimina, tot exitus, tot euentus felicitates
+                  infelicitates dispersae atque concisae diuinitatis, dubitabitne
+                  ibidem pronuntiare has esse fabulas et genealogias indeterminatas,
+                  quas apostoli spiritus, <span ana="metaphore" type="vegetal">his iam tunc pullulantibus
+                  seminibus haereticis</span>, damnare praeuenit ? merito itaque non
+                  simplices, merito tantummodo prudentes, qui talia neque facile
+                  producunt neque exerte defendunt, sed nec omnes quos edocent
+                  perdocent; utique astute, ut pudenda; ceterum inhumane,
+                  si honesta. et tamen simplices nos omnia scimus. <span ana="metaphore" type="militaire">denique
+                  hunc primum cuneum congressionis armabimus detectorem
+                  et designatorem totius conscientiae illorum, primamque hanc
+                  uictoriam auspicamur, quia quod tanto impendio absconditur,
+                  etiam solummodo demonstrare destruere est. </span>
+               </p>
+            </div2>
+            <div2 type="textpart" subtype="chapter" n="4">
+               <p>
+                  IV. [1] Nouimus, inquam, optime originem quoque ipsorum et
+                  scimus, cur Valentinianos appellemus, licet non esse uideantur.
+                  abscesserunt enim a conditore, sed minime origo deletur, et
+                  si forte mutatur; testatio est ipsa mutatio. sperauerat episcopatum
+                  Valentinus, quia et ingenio poterat et eloquio, sed alium ex martyrii
+                  praerogatiua loci potitum indignatus de
+                  ecclesia authenticae regulae abrupit, <span ana="metaphore" type="feu">ut solent animi pro prioratu
+                  exciti praesumptione ultionis accendi</span>. <span ana="metaphore" type="militaire">ad expugnandam
+                  conuersus ueritatem </span>et <span ana="metaphore" type="vegetal">cuiusdam ueteris opinionis semen
+                  nactus</span> colubro suo uiam delineauit. eam postmodum Ptolomaeus
+                  intrauit, nominibus et numeris Aeonum distinctis in
+                  personales substantias, sed extra deum determinatas, quas
+                  Valentinus in ipsa summa diuinitatis ut sensus et affectus
+                  (et) motus incluserat. deduxit et Heracleon inde tramites quosdam
+                  et Secundus et magus Marcus. multum circa imagines
+                  legis Theotimus operatus est. ita nusquam iam Valentinus,
+                  et tamen Valentiniani, qui per Valentinum ! Solus ad hodiernum
+                  Antiochiae Axionicus memoriam Valentini integra custodia
+                  regularum eius consolatur. <span ana="personnification">alioquin tantum se huic haeresi
+                  suadere permissum est, quantum lupae feminae formam cotidie
+                  supparare sollemne est</span>. Quidni, cum spiritale illud semen
+                  suum sic in unoquoque recenseant ? Si aliquid noui adstruxerint,
+                  reuelationem statim appellant praesumptionem et
+                  charisma ingenium, nec unitatem * sed diuersitatem. ideoque
+                  prospicimus seposita illos sollemni dissimulatione sua,
+                  plerosque diuidi (de) quibusdam articulis, etiam bona fide
+                  dicturos \'hoc ita non est\' et \'hoc aliter accipio\' et \'hoc non
+                  agnosco! <span ana="personnification">Varietate enim innouata regularum facies habet etiam
+                  colores ignorantiarum.</span>
+               </p>
+            </div2>
+            <div2 type="textpart" subtype="chapter" n="5">
+               <p>
+                  V. [1] Mihi autem cum archetypis erit limes principalium
+                  magistrorum, non cum adfectatis ducibus passiuorum discipulorum.
+                  nec utique dicemur ipsi nobis finxisse materias, quas
+                  tot iam uiri sanctitate et praestantia insignes, nec solum
+                  nostri antecessores sed ipsorum haeresiarcharum contemporales,
+                  instructissimis uoluminibus et prodiderunt et retuderunt,
+                  ut Iustinus, philosophus et martyr, ut Miltiades, ecclesiarum
+                  sophista, ut Irenaeus, omnium doctrinarum curiosissimus
+                  explorator, ut Proculus noster, uirginis senectae et Christianae
+                  eloquentiae dignitas, quos in omni opere fidei, quemadmodum
+                  in isto, optauerim adsequi. aut si in totum haereses non sunt,
+                  ut qui eas pellunt finxisse credantur, mentietur apostolus,
+                  praedicator illarum. porro si sunt, non aliae erunt quam
+                  quae retractantur. nemo tam otiosus fertur, stilo ut materias
+                  habens fingat.
+               </p>
+            </div2>
+            <div2 type="textpart" subtype="chapter" n="6">
+               <p>
+                  VI. [1] Igitur hoc libello, quo demonstrationem solum praemittentes
+                  sumus illius arcani, <span ana="metaphore" type="lumiere">ne quem ex nominibus tam peregrinis et coactis
+                  et compactis et ambiguis caligo suffundat, quomodo iis
+                  usuri sumus, prius demandabo</span>. quorundam enim de Graeco interpretatio
+                  non occurrit ad expeditam proinde nominis formam,
+                  quorundam nec de sexu genera conueniunt, quorundam usitatior
+                  in Graeco notitia est. itaque plurimum Graeca ponemus ;
+                  significantiae per paginarum limites aderunt, nec Latinis quidem
+                  deerunt Graeca, sed in lineis desuper notabuntur, ut
+                  signum hoc sit personalium nominum propter ambiguitates
+                  eorum, quae cum alia significatione communicant. <span ana="metaphore" type="militaire">quamquam
+                  autem distulerim congressionem, solam interim professus narrationem,
+                  sicubi tamen indignitas meruerit suggillari, non erit
+                  delibationi transfunctoria expugnatio. congressionis lusionem
+                  deputa, lector, ante pugnam; ostendam, sed non imprimam
+                  uulnera.</span> si et ridebitur alicubi, materiis ipsis satisfiet. multa
+                  sic digna sunt reuinci, ne grauitate adonerentur. uanitati proprie
+                  festiuitas cedit. <span ana="personnification">Congruit et ueritati ridere, quia laetans
+                  de aemulis suis ludere [quia] secura est</span>. Curandum plane,
+                  ne risus eius rideatur, si fuerit indignus ; ceterum ubicumque
+                  dignus risus, officium est. Denique hoc modo incipiam.
+               </p>
+            </div2>
+            <div2 type="textpart" subtype="chapter" n="7">
+               <p>
+                  VII. [1] Primus omnium Ennius poeta Romanus "caenacula
+                  maxima caeli" simpliciter pronuntiauit, elati situs nomine
+                  uel quia Iouem illic epulantem legerat apud Homerum. sed
+                  haeretici quantas supernitates supernitatum et quantas sublimitates
+                  sublimitatum in habitaculum dei sui cuiusque suspenderint
+                  extulerint expanderint, mirum est. etiam creatori nostro
+                  Enniana caenacula in aedicularum disposita sunt forma. <span ana="metaphore" type="lieu">Aliis
+                  atque aliis pergulis superstructis et unicuique deo per totidem
+                  scalas distributis, quot haereses fuerint, meritorium factus est
+                  mundus ! Insulam Feliculam credas tanta tabulata caelorum.</span>
+                  Nescio ubi illic etiam Valentinianorum deus ad summas tegulas
+                  habitat. hunc substantialiter quidem Αἰῶνα Τέλειον appellant,
+                  personaliter uero Προπάτορα et Προαρχήν , etiam Bython, quod
+                  in sublimibus habitanti minime congruebat. Innatum inmensum
+                  infinitum inuisibilem aeternumque definiunt, quasi statim
+                  probent esse, si talem definiant, qualem scimus esse debere.
+                  sic et ante omnia fuisse (non) ut dicatur, sed ut sit expostulo nec
+                  aliud magis in huiusmodi denoto, quam quod post omnia
+                  inueniuntur qui ante omnia fuisse dicuntur, et quidem non
+                  sua. sed et itaque Bythos iste infinitis retro aeuis in maxima
+                  et altissima quiete, in otio plurimo placidae et, ut ita dixerim,
+                  stupentis diuinitatis, qualem iussit Epicurus. et tamen quem
+                  solum uolunt, dant ei secundam in ipso et cum ipso personam,
+                  Ennoian, quam et Charin et Sigen insuper nominant.
+                  et forte accedit in illa commendatissima quiete monere eum
+                  de proferendo tandem initio rerum a semetipso. <span ana="metaphore" type="corps">hoc uice
+                  seminis in Sige sua uelut in genitalibus uuluae locis collocat.
+                  suscipit illa statim et praegnans efficitur et parit, utique
+                  silentio, Sige. et quem parit?</span> Nus est, simillimum patri et
+                  parem per omnia. denique solus hic capere sufficit inmensam
+                  illam et incomprehensibilem magnitudinem patris. ita et ipse
+                  pater dicitur et initium omnium et proprie Monogenes. atquin
+                  non proprie, siquidem non solus agnascitur. nam cum illo
+                  processit et femina, cui Veritas (nomen). [Monogenes, quia
+                  prior genitus, quanto congruentius Protogenes uocaretur!]
+                  ergo Bythos et Sige, Nus et Veritas prima quadriga defenditur
+                  Valentinianae factionis, matrix et origo cunctorum.
+                  namque ibidem Nus simul accepit prolationis suae officium,
+                  emittit et ipse ex semetipso Sermonem et Vitam. quae si
+                  retro non erat, utique nec in Bytho. et quale est, ut in deo
+                  uita non fuerit? sed et haec soboles, ad initium uniuersitatis
+                  et formati(onem) Pleromatis totius emissa, facit fructum: Hominem
+                  et Ecclesiam procreat. habes ogdoadem, tetradem duplicem,
+                  ex coniugationibus masculorum et feminarum, cellas, ut
+                  ita dixerim, primordialium Aeonum, fraterna conubia Valentinianorum
+                  deorum, census omnia sanctitatis et maiestatis
+                  haereticae, <span ana="metaphore" type="mal">nescio criminum an numinum turbam, certe fontem
+                  reliquae fecunditatis.</span>
+               </p>
+            </div2>
+            <div2 type="textpart" subtype="chapter" n="8">
+               <p>VIII. [1] Ecce enim secunda tetras, Sermo et Vita, Homo et Ecclesia,
+                  quod in Patris gloria fruticasset huic numero gestientes et
+                  ipsi tale quid Patri de suo offere, alios ebulliunt fetus
+                  proinde coniugales per copulam utriusque naturae: hac
+                  et Sermo et Vita decuriam Aeonum simul fundunt; illac Homo
+                  et Ecclesia duos amplius aequiperando parentibus, quia et
+                  ipso duo cum illis decem tot efficiunt quot ipsi procreaverunt.
+                  [2] Reddo nunc nomina quos decuriam dixi: Bythios et
+                  Mixis, Ageratos et Henosis, Autophyes et Hedone, Acinetos
+                  et Syncrasis, Monogenes et Macaria. contra duodenarius
+                  numerus hi erunt: Paracletus et Pistis, Patricos et Elpis,
+                  Metricos et Agape, Aeinus et Synesis, Ecclesiasticus et
+                  Macariotes, Theletus et Sophia. <span ana="comparaison" type="famille">Cogor hic, quid ista nomina
+                  desiderent, proferre de pari exemplo: [3] in scholis
+                  Karthaginensibus fuit quidam frigidissimus rhetor Latinus,
+                  Phosphorus nomine. cum virum fortem peroraret "venio
+                  (inquit) ad vos, optimi cives, de proelio cum Victoria mea,
+                  cum Felicitate vestra, Ampliatus Gloriosus Fortunatus Max-
+                  imus Triumphalis." et scholastici statim familiae Phosphori
+                  feu~ acclamant.</span> [4] audisti Fortunatam et Hedonen et
+                  Acinetum et Theletum; acclama familiae Ptolomaei feu~. hoc
+                  erit Pleroma illud arcanum, divinitatis tricenariae plenitudo. Videamus quae sint istorum privilegia numerorum--
+                  quaternarii et octonarii et duodenarii. [5] interim in tricenario
+                  fecunditas tota deficit; castrata est vis et potestas et libido genitalis Aeonum
+                  quasi non et numerorum tanta
+                  adhuc coagula superessent et nulla alia de paedagogio nomina.
+                  quare enim non et quinquaginta et centum procreantur ? Quare
+                  non et Sterceiae et Syntrophi nominantur ?</p>
+            </div2>
+            <div2 type="textpart" subtype="chapter" n="9">
+               <p> IX. [1]Sed et hoc exceptio personarum est, quod solus ille
+                  Nus ex omnibus inmensi patris fruitur notione, gaudens et
+                  exultans, illis utique maerentibus. plane Nus, quantum in ...
+                  ipso fuit, et uoluerat et temptauerat ceteris quoque communicare
+                  quae norat, quantus et quam incomprehensibilis pater.
+                  sed intercessit mater Sige, illa scilicet, quae et ipsis haereticis
+                  suis tacere praescribit, etsi de patris nutu aiunt factum,
+                  <span ana="metaphore" type="feu">uolentis omnes in desiderium sui accendi</span>. [2] Itaque dum macerantur
+                  intra semetipsos, <span ana="metaphore" type="feu">dum tacita cupidine cognoscendi
+                  patrem uruntur, paene scelus factum est</span>. Namque ex illis
+                  duodecim Aeonibus, quos Homo et Ecclesia ediderant, nouissima
+                  natu Aeon — uiderit soloecismus, Sophia enim nomen
+                  est — incontinentia sui sine coniugis Theleti societate prorumpit
+                  in patrem inquirere et genus contrahit uitii, quod
+                  exorsum quidem fuerat in illis aliis, qui circa Nun, in hunc
+                  autem. Id est in Sophiam, deriuarat, <span ana="comparaison" type="medecine">ut solent uitia in corpore
+                  alibi connata in aliud membrum perniciem suam efflare.</span>
+                  [3] Sed enim sub praetexto dilectionis in patrem aemulatio superabat
+                  in Nun, solum de patre gaudentem. ut uero impossibilia
+                  contendens Sophia frustra erat et uincitur difficultate et
+                  extenditur adfectione, modico abfuit prae ui dulcedinis et
+                  laboris deuorari et in reliquam substantiam dissolui; nec
+                  alias quam pereundo cessasset, nisi bono fato in Horon
+                  incursasset, — quaedam et huic uis: est fundamentum uniuersitatis
+                  (et) illius extrinsecus custos — quem et Crucem appellant
+                  et Lytroten et Carpisten. ita Sophia, periculo exempta et tarde
+                  persuasa (de) declinata inuestigatione patris, conquieuit et totam
+                  Animationem (Enthymesin) cum passione, quae insuper acciderat,
+                  exposuit.</p>
+            </div2>
+            <div2 type="textpart" subtype="chapter" n="10">
+               <p>
+                  X. [1] Sed quidam exitum Sophiae et restitutionem aliter
+                  <span ana="metaphore" type="sommeil">somniauerunt</span> : <span ana="enargeia" type="corps">post inritos conatus et spei deiectionem deformatam
+                  eam pallore, credo, et macie et incuria, proprie uti quae
+                  patrem non minus denegatum dolebat quam amissum.</span>
+                  Dehinc in illo maerore ex semetipsa sola, nulla opera coniugii,
+                  concipit et procreat feminam. <span ana="comparaison" type="animal">Miraris hoc ? Et gallina sortita
+                  est de suo parere ; sed et uultures feminas tantum aiunt.</span> [2] Et
+                  tamen sine masculo mater et metuere postremo, ne
+                  finis quoque insisteret ; haerere de ratione casus, curare de
+                  occultatione. Remedia nusquam. <span ana="metaphore" type="theatre">Vbi enim iam tragoediae atque
+                  comoediae, a quibus forma mutuaretur exponendi quod citra
+                  pudorem erat natum ?</span> Dum in malis res est, suspicit, conuertit
+                  ad patrem. sed incassum enisa, ut uires deserebant, in preces
+                  succidit. tota etiam propinquitas pro ea supplicat, uel maxime
+                  Nus. Quidni ? Causa mali tanti! nullus tamen Sophiae exitus
+                  uacuit. [3] Omnes aerumnae eius operantur in materiae originem,
+                  siquidem ex illa tunc conflictatione [peruenit] ignorantia pauore
+                  maerore substantiae fiunt. ibi demum pater, motus aliquando,
+                  quem supra diximus Horon per Monogenem Nun in haec
+                  promit in imagine sua, feminam marem, quia et de patris
+                  sexu ita uariant. adiciunt autem Horon etiam Metagogea
+                  (circumductorem) uocari et Horotheten. huius praedicant opera
+                  et repressam ab inlicitis et purgatam a malis et deinceps
+                  confirmatam Sophiam et coniugio restitutam; et ipsam quidem
+                  in Pleromatis censu remansisse, enthymesin uero eius et illam
+                  adpendicem passionem ab Horo relegatam et crucifixam et extra
+                  eum factam. malum, quod aiunt, foras! spiritalem tamen
+                  substantiam illam, ut naturalem quendam impetum Aeonis,
+                  sed informem et inspeciatam, quatenus nihil adprehendisset,
+                  <span ana="metaphore" type="fruit">ideoque fructum infirmum et feminam pronuntiatam</span>.
+               </p>
+            </div2>
+            <div2 type="textpart" subtype="chapter" n="11">
+               <p>XI. [1] Igitur post Enthymesin extorrem et matrem eius
+                  Sophiam coniugi reducem ille iterum Monogenes, ille Nus,
+                  otiosus plane de patris cura atque prospectu solidandis
+                  rebus et pleromati muniendo iamque figendo, ne qua
+                  eiusmodi rursus concussio incurreret, <span ana="metaphore" type="animal">nouam excludit
+                  copulationem</span> : Christum et Spiritum Sanctum, turpis-
+                  simam putem duorum masculorum. [2] Aut femina erit
+                  Spiritus Sanctus, et uulneratur a femina masculus ?
+                  Munus enim his datur unum : procurare concinnationem
+                  aeonum, et ab eius officii societate duae scholae protinus,
+                  duae cathedrae, inauguratio quaedam diuidendae doctrinae
+                  Valentini. Christi erat inducere aeonas naturam
+                  coniugiorum - uides quam rem plane - et innati coniectationem
+                  et idoneos efficere generandi in se agnitionem
+                  patris, quod capere eum non sit neque comprehendere,
+                  non uisu denique, non auditu compotiri eius, nisi per
+                  Monogenem. [3] Et tamen tolerabo quod ita discunt
+                  patrem nosse : ne nos et illud. Magis denotabo doctrinae
+                  peruersitatem, quod docebantur incomprehensibile quidem
+                  patris causam esse perpetuitatis ipsorum, comprehensibile
+                  uero eius generationis illorum et formationis esse ratio-
+                  nem. Hac enim dispositione illud, opinor, insinuatur,
+                  expedire deum non adprehendi, siquidem inadprehensibile
+                  eius perpetuitatis est causa, (4.) adprehensibile
+                  autem non perpetuitatis, sed natiuitatis et formationis
+                  egentium perpetuitatis. [4] Filium autem constituunt
+                  adprehensibile patris ; quomodo tamen adprehendatur,
+                  tum prolatus Christus edocuit. Spiritus uero Sancti
+                  propria, ut de doctrinae studio omnes peraequati
+                  gratiarum actionem prosequi nossent et ueram inducerentur quietem.
+               </p>
+            </div2>
+            <div2 type="textpart" subtype="chapter" n="12">
+               <p>XII. [1] Itaque omnes et forma et scientia peraequantur,
+                  facti omnes quod unusquisque ; nemo aliud, quia alteri
+                  omnes. <span ana="metaphore" type="eau">Refunduntur in Nus omnes, in Homines, in
+                  Philetos, aeque feminae in Sigas, in Zoas, in Ecclesias,
+                  in Fortunatas</span>, ut Ouidius « Metamorphosis » suas
+                  deleuisset, si hodie maiorem cognouisset. [2] Exinde refecti
+                  sunt et constabiliti sunt et in requiem <span ana="metaphore" type="fruit">ex ueritate compositi
+                  magno cum gaudii fructu hymnis patrem concinunt</span>.
+                  Diffundebatur et ipse laetitia, [et] utique bene cantantibus
+                  filiis, nepotibus. Quidni diffunderetur omni iocunditate,
+                  pleromate liberato ? <span ana="metaphore" type="marin">Quis nauclerus non etiam cum
+                  dedecore laetatur ? Videmus cotidie nauticorum lasciuias
+                  gaudiorum.</span> [3] <span ana="comparaison" type="pique-nique">Itaque ut nautae ad symbolam semper
+                  exultant, tale aliquid et aeones :</span> unum iam omnes etiam
+                  forma, nedum sententia, conuenientibus ipsis quoque
+                  nouis fratribus et magistris Christo et Spiritu Sancto,
+                 <span ana="metaphore" type="vegetal"> quod optimum atque pulcherrimum unusquisque florebat
+                  conferunt in medium</span>. Vane, opinor. <span ana="comparaison" type="pique-nique">Si enim unum erant
+                  omnes ex supra dicta peraequatione, uacabat symbolae
+                  ratio, quae ferme ex uarietatis gratia constat</span> : (4.) unum
+                  omnes bonum conferebant, quod omnes erant ; de modo
+                  forsitan fuerit ratio aut de forma ipsius iam peraequationis
+                  [4] Igitur ex aere collaticio, quod aiunt, <span ana="metaphore" type="fruit">in honorem
+                  et gloriam patris pulcherrimum pleromatis sidus fructumque
+                  perfectum compingunt</span>, Iesum. Eum cognominant
+                  Soterem et Christum et Sermonem de patritis,
+                  et Omnia iam, <span ana="metaphore" type="vegetal">ut ex omnium defloratione constructum</span> :
+                  <span ana="metaphore" type="culture_antique">gragulum Aesopi, Pandoram Hesiodi, Acci patinam,
+                  Nestoris cocetum, miscellaneam Ptolemaei.</span> [5] <span ana="irreel" type="theatre">Quam
+                  propius fuit de aliquibus Osciae scurris Pancapipanni-
+                  rapiam uocari a tam otiosis auctoribus nominum !</span> <span ana="metaphore" type="theatre">Vt
+                  autem tantum sigillarium extrinsecus quoque inornassent,
+                  satellites ei angelos proferunt, par genus</span> : si inter
+                  se, potest fieri, si uero Soteri consubstantiuos - ambigue
+                  enim positum inueni -, quae erit eminentia eius inter
+                  satellites coaequales ?</p>
+            </div2>
+            <div2 type="textpart" subtype="chapter" n="13">
+               <p>XIII. [1] Continet hic igitur ordo primam professionem
+                  pariter et nascentium et nubentium et generantium
+                  aeonum, Sophiae ex desiderio patris periculosissimum
+                  casum, Hori oportunissimum auxilium, Enthymeseos
+                  et coniunctae passionis expiatum, Christi et Spiritus
+                  Sancti paedagogatum, aeonum tutelarem reformatum,
+                  <span ana="metaphore" type="theatre">Soteris pauoninum ornatum</span>, angelorum comparaticium
+                  antistatum. [2] Quod superest, inquis, uos ualete et
+                  plaudite ! Immo quod superest, inquam, uos audite et
+                  proicite ! <span ana="metaphore" type="theatre">Ceterum haec intra coetum pleromatis decucurrisse
+                  dicuntur, prima tragoediae scaena, alia autem
+                  trans siparium coturnatio est, extra pleroma dico.</span> Et
+                  tamen exitus sub uisu patris, intra ambitum Hori custodis	:
+                  qualis extra iam in libero, ubi deus non erat ?</p>
+            </div2>
+            <div2 type="textpart" subtype="chapter" n="14">
+               <p>XIV. [1] Namque Enthymesis, siue iam Achamoth, quod
+                  abhinc scripta hoc solo ininterpretabili nomine, ut cum
+                  uitio indiuiduae passionis explosa est in loca luminis
+                  aliena, quod pleromatis res est, <span ana="metaphore" type="culture_antique">in uacuum atque inane
+                  illud Epicuri, miserabilis etiam de loco est</span>. Certe nec
+                  forma nec facies ulla : defectiua scilicet et abortiua
+                  genitura. Dum ita rerum habet, flectitur a superioribus
+                  Christus, deducitur per Horon, aborsum ut illud
+                  informet de suis uiribus, solius substantiae non etiam
+                  scientiae forma. [2] Et tamen <span ana="metaphore" type="sens">cum aliquo peculio relinquitur,
+                  id erat odor incorruptibilitatis</span>, quo compos casus
+                  sui potiorum desiderio suppararetur. Hac misericordia
+                  functus, non sine Spiritus Sancti societate, recurrit
+                  Christus in pleroma. Vsus est rerum ex liberalitatibus
+                  quoque nomina accedere : Enthymesis de actu fuit,
+                  Achamoth unde, adhuc quaeritur, Sophia de matre manat,
+                  Spiritus Sanctus ex angelo. [3] Accipit Christi, a quo
+                  derelictam se statim senserat, desiderium. Itaque prosiluit
+                  et ipsa lumen eius inquirere. Quem si omnino non
+                  nouerat, ut inuisibiliter operatum, quomodo lumen
+                  eius ignotum cum ipso requirebat ? Tamen temptauit
+                  et fortasse adprehendisset, si non idem Horos, qui matri
+                  eius tam prospere uenerat, nunc tam importune filiae
+                  occurrisset, ut etiam inclamauerit in eam « Iao ! »,
+                  quasi « Porro quirites ! » aut « Fidem Caesaris ! ». [4] Inde
+                  inuenitur Iao in scripturis. Ita depulsa quominus per-
+                  geret nec habens superuolare Crucem, id est Horon, <span ana="metaphore" type="culture_antique">quia
+                  nullum Catulli Laureolum fuerit exercitata</span>, ut destituta,
+                  ut passioni illi suae intricata multiplici atque perplexae,
+                  omni genere eius coepit adfligi : maerore, quod non
+                  perpetrasset inceptum, metu, ne sicut luce ita et uita
+                  orbaretur, consternatione, tum ignorantia, nec ut mater
+                  eius - illa enim aeon, at haec pro condicione deterius -,
+                  insurgente adhuc et alio fluctu, conuersionis scilicet in
+                  Christum, a quo uiuificata fuerat et in hanc ipsam
+                  conuersionem temperata.</p>
+            </div2>
+            <div2 type="textpart" subtype="chapter" n="15">
+               <p>XV. [1] <span ana="personnification">Age nunc discant Pythagorici, agnoscant
+                  Stoici, Plato ipse, unde materia, quam innatam uolunt,
+                  et originem et substantiam traxerit in omnem hanc
+                  struem mundi ; quod nec Mercurius ille Trismegistus,
+                  magister omnium physicorum, recogitauit.</span> [2] Audisti
+                  conuersionem, genus aliud passionis : ex hac omnis
+                  anima huius mundi dicitur constitisse, etiam ipsius
+                  Demiurgi, id est dei nostri ; audisti maerorem et timorem :
+                  ex his initiata sunt cetera. Nam ex lacrimis eius uniuersa
+                  aquarum natura manauit. [3] Hinc aestimandum quem
+                  exitum duxerit, quantis lacrimarum generibus inun-
+                  dauerit. Habuit et salsas, habuit et amaras et dulces et
+                  calidas et frigidas guttas et bituminosas et ferruginantes
+                  et sulphurantes utique et uenenatas, ut et Nonacris inde
+                  sudauerit, quae Alexandrum occidit, et Lyncestarum inde
+                  defluxerit, quae ebrios efficit, et Salmacis inde se soluerit,
+                  quae masculos molles. [4] Etiam caelestes imbres pipiauit
+                  Achamoth et nos in cisternis alienos luctus et lacrimas
+                  seruare curamus. Proinde ex consternatione et pauore
+                  corporalia elementa ducta sunt. Et tamen in tanta
+                  circumstantia solitudinis, in tanto circumspectu destitu-
+                  tionis ridebat interdum, qua [conspecti] Christi recordans :
+                  eodem gaudii risu lumen effulsit ! [5] Cuius hoc proui-
+                  dentiae beneficium, quae illam ridere cogebat ? idcirco
+                  ne semper nos in tenebris moraremur ! Nec obstupescas :
+                  quin laetitia eius tam splendidum elementum radiauerit
+                  mundo, cum maestitia quoque eius tam necessarium
+                  instrumentum defuderit saeculo ? O risum inlumina-
+                  torem ! o fletum rigatorem ! <span ana="irreel">Et tamen poterat remedio
+                  iam agere cum illius loci horrore. Omnem enim obs-
+                  curitatem eius discussisset, quotiens ridere uoluisset,
+                  uel ne cogeretur desertores suos supplicare.</span>
+               </p>
+            </div2>
+            <div2 type="textpart" subtype="chapter" n="16">
+               <p>XVI. [1] Conuertitur enim ad preces et ipsa more
+                  materno. Sed Christus, quem iam pigebat extra pleroma
+                  proficisci, uicarium praeficit Paracletum Soterem : hic
+                  erit Iesus, largito ei patre uniuersorum aeonum summam
+                  potestatem subiciendis [eis] omnibus, uti in ipso
+                  secundum apostolum omnia conderentur ; ad eam emittit
+                  cum officio atque comitatu coaetaneorum angelorum,
+                  credas et cum duodecim fascibus. [2] Ibidem aduentu
+                  pompatico eius concussa, Achamoth protinus uelamen-
+                  tum sibi obduxit ex officio primo uenerationis et
+                  uerecundiae ; <span ana="metaphore" type="fruit">dehinc contemplatur eum fructiferumque
+                  suggestum</span>. Quibus inde conceperat uiribus occurrit illi
+                  « Κύριε χαῖρε ». Hic, opinor, susceptam ille confirmat
+                  atque conformat agnitione iam et <span ana="metaphore" type="pureté">ab omnibus iniuriis
+                  passionis expumicat</span> non eadem neglegentia in exterminium
+                  discretis quam acciderat in casibus matris.
+                  [3] Sed enim exercitata uitia et usu uiriosa confudit atque
+                  ita massaliter solidata defixit seorsum, in materiae
+                  incorporalem paraturam commutans ex incorporali
+                  passione, indita habilitate atque natura, qua peruenire mox
+                  posset in aemulas aequiperantias corpulentiarum, ut
+                  duplex substantiarum condicio ordinaretur, de uitiis
+                  pessima, de conuersione passionalis. Haec erit materia,
+                  quae nos commisit cum Hermogene ceterisque qui
+                  deum ex materia, non ex nihilo, operatum cuncta
+                  praesumunt.</p>
+            </div2>
+            <div2 type="textpart" subtype="chapter" n="17">
+               <p>XVII. [1] Abhinc Achamoth, expedita tandem de malis
+                  omnibus, ecce iam proficit et <span ana="metaphore" type="fruit">in opera maiora frugescit</span>.
+                  <span ana="metaphore" type="feu">Prae gaudio enim tanti ex infelicitate successus concalefacta
+                  simulque contemplatione ipsa angelicorum luminum,
+                  ut ita dixerim, subfermentata - pudet, sed aliter
+                  exprimere non est - quodammodo subsuriit intra</span> et ipsa
+                  in illos et conceptu statim intumuit spiritali ad imaginem
+                  ipsam, quam ui laetantis, <span ana="metaphore" type="maladie">ex laetitia prurientis intentionis</span>
+                 <span ana="metaphore" type="consommation"> imbiberat</span> et sibi intimarat. [2] Peperit denique, et facta
+                  est exinde trinitas generum ex trinitate causarum, unum
+                  materiale, quod ex passione, aliud animale, quod ex
+                  conuersione, tertium spiritale, quod ex imaginatione.</p>
+            </div2>
+            <div2 type="textpart" subtype="chapter" n="18">
+               <p>XVIII. [1] Hac auctoritate trium scilicet liberorum
+                  agendis rebus exercitior facta, formare singula genera
+                  constituit. Sed spiritale quidem non ita potuit attingere,
+                  ut et ipsa spiritalis. Fere enim paria et consubstantiua
+                  in alterutrum ualere societas naturae negauit. [2] Eo
+                  animo se unum ad animale conuertit, prolatis Soteris
+                  disciplinis. Et primum, quod cum magno horrore
+                  blasphemiae et pronuntiandum et legendum est et audiendum,
+                  deum fingit hunc nostrum et omnium praeter
+                  haereticorum, Patrem et Demiurgum et Regem
+                  uniuersorum quae post illum. Ab illo enim, si tamen ab illo,
+                  et non ab ipsa potius Achamoth, <span ana="comparaison" type="theatre">a qua occulto nihil
+                  sentiens eius et uelut sigillario extrinsecus ductu in
+                  omnem operationem mouebatur.</span> [3] Denique ex hac
+                  personarum in operibus ambiguitate nomen illi Metropatoris
+                  miscuerunt, distinctis appellationibus ceteris
+                  secundum status et situs operum, ut animalium quidem
+                  substantiarum, quas ad dextram commendant, Patrem
+                  nuncupent, materialium uero, quas ad laeuam delegant,
+                  Demiurgum nominent, Regem autem communiter in uniuersitatem. </p>
+            </div2>
+            <div2 type="textpart" subtype="chapter" n="19">
+               <p>XIX. [1] Sed nec nominum proprietas competit pro-
+                  prietati operum, de quibus nomina, cum deberet illa
+                  haec omnia uocitari, a qua res agebantur ; nisi quod
+                  iam nec ab illa. Cum enim dicant Achamoth in honorem
+                  aeonum imagines commentatam, rursus hoc in Soterem
+                  auctorem detorquent, qui per illam sit operatus, ut
+                  ipsam quidem imaginem Patris inuisibilis et incogniti
+                  daret, incognitam scilicet et inuisibilem Demiurgo,
+                  eundem autem Demiurgum Nun filium effingeret,
+                  Archangeli uero, Demiurgi opus, reliquos aeonas exprimerent.
+                  [2] <span ana="metaphore" type="peinture">Cum imagines audio tantas trium, quaero,
+                  non uis nunc ut imagines rideam peruersissimi pictoris
+                  illorum ?</span> feminam Achamoth, imaginem patris, et ignarum
+                  matris Demiurgum, multo magis patris, imaginem
+                  Nu non ignorantis patrem, et angelos famulos,
+                  simulacra dominorum ! <span ana="metaphore" type="animal">Hoc est mulum de asino pingere
+                  et Ptolemaeum describere de Valentino.</span> </p>
+            </div2>
+            <div2 type="textpart" subtype="chapter" n="20">
+               <p>XX. [1] Igitur Demiurgus, extra pleromatis limites
+                  constitutus, <span ana="metaphore" type="lieu">in ignominiosa aeterni exilii uastitate nouam
+                  prouinciam condidit</span>, hunc mundum, repurgata confusione
+                  et distincta diuersitate duplicis substantiae illius detrusae
+                  animalium et materialium. Ex incorporalibus corpora
+                  aedificat, grauia leuia, sublimantia atque uergentia,
+                  caelestia atque terrena. <span ana="metaphore" type="theatre">Tum ipsam caelorum septem-
+                  plicem scaenam solio desuper suo finit.</span> [2] Vnde et Sabbatum
+                  dictum est ab hebdomade sedis suae, ut Ogdoada
+                  mater Achamoth ab argumento ogdoadis primigenitalis.
+                  Caelos autem νοεροὺς deputant et interdum angelos
+                  eos faciunt, sicut et ipsum Demiurgum, sicut et Paradisum
+                  archangelum quartum, quoniam et hunc supra
+                  caelum tertium pangunt, ex cuius uirtute sumpserit
+                  Adam, deuersatus illic inter nubeculas et arbusculas.
+                  [3] <span ana="comparaison" type="culture_antique">Satis meminerat Ptolemaeus puerilium dicibulorum,
+                  in mari poma nasci et in arbore pisces ; sic et in caelestibus
+                  nuceta praesumpsit</span>. Operatur Demiurgus ignorans et
+                  ideo fortasse non scit arbores in sola terra institui oportere.
+                  Plane mater sciebat. Quidni suggerebat, quae et
+                  effectum suum ministrabat ? Sed tantum fastigium filio
+                  extruens per ea opera quae illum et patrem et deum et
+                  regem ante Valentinianorum ingenia testantur, cur sibi
+                  quoque ista noluit esse nota, postea quaeram.</p>
+            </div2>
+            <div2 type="textpart" subtype="chapter" n="21">
+               <p>XXI. [1] Interim tenendum Sophiam cognominari et Terram et
+                  Matrem et, quod magis rideas, etiam Spiritum Sanctum
+                  quasi marem [terram]. <span ana="corps">Ita omnem illi honorem contulerunt
+                  feminae, puto et barbam, ne dixerim cetera.</span>
+                  Alioquin Demiurgus adeo rerum non erat compos - de
+                  animalis scilicet census inualitudine spiritalia accedere
+                  - ut se solum ratus contionaretur : Ego deus, et absque
+                  me non est. [2] Certe tamen non fuisse se retro sciebat.
+                  Ergo et factum intellegebat et factitatorem facti esse
+                  quemcumque. Quomodo ergo solus sibi uidebatur ?
+                  Etsi non certus, saltim suspectus de aliquo factitatore !</p>
+            </div2>
+            <div2 type="textpart" subtype="chapter" n="22">
+               <p>XXII. [1] Tolerabilior infamia est apud illos in diabolum,
+                  uel quia origo sordidior capit. Ex nequitia enim maeroris
+                  illius deputatur, ex qua angelorum et daemonum et
+                  omnium spiritalium malitiarum genituras notant. [2] Et
+                  tamen diabolum quoque opus Demiurgi adfirmant et
+                  Munditenentem appellant et superiorum magis gnarum
+                  defendunt, ut spiritalem natura, quam Demiurgum, ut
+                  animalem. Meretur ab illis praelationem cui omnes
+                  haereses procurantur.</p>
+            </div2>
+            <div2 type="textpart" subtype="chapter" n="23">
+               <p>XXIII. [1] <span ana="metaphore" type="lieu">Singularium autem potestatum arces his
+                  finibus collocant</span> : in summis summitatibus praesidet
+                  tricenarius pleroma, Horo signante lineam extremam.
+                  Inferius illum metatur medietatem Achamoth, <span ana="metaphore" type="corps">filium
+                  calcans</span>. Subest enim Demiurgus in hebdomade sua.
+                  [2] Magis diabolus in isto nobiscum conuenit mundo
+                  coelementato et concorporificato, ut supra editum est,
+                  ex Sophiae utilissimis casibus, <span ana="metaphore" type="air">qua nec aerem haberet,
+                  reciprocandi spiritus spatium, teneram omnium corporum
+                  uestem, colorum omnium indicem, organum temporum</span>,
+                  <span ana="metaphore" type="filtre">si non et istum Sophiae maestitia colasset</span>, sicut animalia
+                  metus, sicut conuersio eius ipsum Demiurgum. [3]<span ana="metaphore" type="feu"> His
+                  omnibus elementis atque corporibus ignis inflabellatus
+                  est</span>. <span ana="metaphore" type="maladie">Cuius originalem Sophiae passionem quia nondum
+                  ediderunt, ego interim argumentabor motiunculis eius
+                  excussum. Credas enim illam in tantis uexationibus
+                  etiam febricitasse</span>.</p>
+            </div2>
+            <div2 type="textpart" subtype="chapter" n="24">
+               <p>XXIV. [1] Cum talia de deo uel de diis, qualia de
+                  homine figmenta ? Molitus enim mundum, Demiurgus
+                  ad hominem manus confert et substantiam ei capit non
+                  ex ista, inquiunt, arida, quam nos unicam nouimus terram
+                  - quasi [non], etsi arida postmodum, adhuc tamen,
+                  tunc aquis ante segregatis, superstite limo, siccauerit -
+                  sed ex inuisibili corpore materiae, illius scilicet
+                  philosophicae, de fluxili et fusili eius, quod unde fuerit audeo
+                  aestimare, quia nusquam est ! [2] <span ana="irreel">Si enim fusile et fluxile
+                  liquoris est qualitas, liquor autem omnis de Sophiae
+                  fletibus fluxit, sequitur ut limum ex pituitis et gramis
+                  Sophiae constitisse credamus, quae lacrimarum proinde
+                  sunt faeces, sicut aquarum quod desidet limus est</span>.
+                 <quote n="Gen 2,7"> Figulat ita hominem Demiurgus et de afflatu suo animat</quote>.
+                  Sic erit et choicus et animalis, ad imaginem et similitu-
+                  dinem factus, quadruplex res, ut imago quidem choicus
+                  deputetur, materialis scilicet, etsi non ex materia
+                  Demiurgus, similitudo autem animalis : hoc enim et
+                  Demiurgus. [3] Habes duos interim. <span ana="metaphore" type="corps">Carnalem superficiem
+                     postea aiunt choico supertextam</span>, et <quote n="Gen 3,21">hanc esse pelliceam
+                  tunicam obnoxiam sensui</quote>.</p>
+            </div2>
+            <div2 type="textpart" subtype="chapter" n="25">
+               <p>XXV. [1] Inerat autem in Achamoth ex substantia
+                  Sophiae matris <span ana="metaphore" type="possession">peculium quoddam seminis spiritalis</span>, sicut
+                  et ipsa Achamoth in filio Demiurgo sequestrauerat, ne
+                  hoc quidem gnaro. Accipe industriam clandestinae prouidentiae
+                  huius. [2] Ad hoc enim et deposuerat et occultauerat
+                  ut, cum Demiurgus animam mox de suo afflatu
+                  in Adam communicaret, pariter et semen illud spiritale
+                  <span ana="comparaison" type="eau">quasi per canalem animam</span> deriuaretur in choicum, <span ana="comparaison" type="corps">atque
+                  ita feturatum in corpore materiali uelut in utero et adultum
+                  illic</span>, idoneum inueniretur suscipiendo quandoque
+                  sermoni perfecto. [3] Itaque <span ana="metaphore" type="vegetal">cum Demiurgus traducem
+                  animae suae committit in Adam</span>, latuit homo spiritalis
+                  flatu eius insertus et pariter corpori inductus, quia non
+                  magis semen nouerat matris Demiurgus quam ipsam. Hoc
+                  semen Ecclesiam dicunt, Ecclesiae supernae speculum et
+                  Hominis censum, proinde eum spiritalem ab Achamoth
+                  deputantes, quemadmodum animalem a Demiurgo,
+                  choicum substantia ἀρχῆς, carne materialem. Habes
+                  nouum, id est quadruplum Geryonem.</p>
+            </div2>
+            <div2 type="textpart" subtype="chapter" n="26">
+               <p>XXVI. [1] Sic et exitum singulis diuidunt : materiali
+                  quidem, id est carnali, quem et sinistrum uocant,
+                  indubitatum interitum ; animali uero, quem et dextrum
+                  appellant, dubitatum euentum, utpote inter materialem
+                  spiritalemque nutanti et illac debito qua plurimum
+                  adnuerit ; ceterum spiritalem emitti in animalis comparationem,
+                  ut erudiri cum eo et exerceri in conuersationibus
+                  possit. [2] Indiguisse enim animalem etiam sensibilium
+                  disciplinarum. In hoc et paraturam mundi prospectam,
+                  in hoc et Soterem in mundo repraesentatum, in salutem
+                  scilicet animalis. Alia adhuc compositione monstruosum
+                  <span ana="metaphore" type="corps">uolunt illum prosicias earum substantiarum induisse</span>,
+                  quarum summam saluti esset redacturus, ut spiritalem
+                  quidem susceperit ab Achamoth, animalem uero a
+                  Demiurgo, quem mox induerit Christum ; ceterum
+                  corporalem, ex animali substantia sed miro et inenarrabili
+                  rationis ingenio constructam, administrationis causa
+                  interim tulisse, quo congressui et conspectui et contactui
+                  et defunctui ingratis subiaceret ; materiale autem
+                  nihil in illo fuisse, utpote salutis alienum. Quasi aliis
+                  fuerit necessarius quam egentibus salute ! Et totum
+                  hoc, ut carnis nostrae habitum alienando a Christo a
+                  spe etiam salutis expellant.</p>
+            </div2>
+            <div2 type="textpart" subtype="chapter" n="27">
+               <p>XXVII. [1] Nunc reddo de Christo in quem tanta
+                  licentia Iesum inserunt quidam quanta spiritale semen
+                  animali cum inflatu infulciunt, <span ana="metaphore" type="aliment">fartilia nescio quae
+                  commenti et hominum et deorum suorum</span> : esse etiam
+                  Demiurgo suum Christum, filium naturalem, denique
+                  animalem, prolatum ab ipso, promulgatum prophetis, in
+                  praepositionum quaestionibus positum, id est per
+                  uirginem, non ex uirgine editum, <span ana="metaphore" type="route">quia delatus in uirginem
+                  transmeatorio potius quam generatorio more processerit,
+                  per ipsam, non ex ipsa, non matrem eam sed uiam
+                  passus.</span> [2] Super hunc itaque Christum deuolasse tunc
+                  in baptismatis sacramento <quote n="Matth 3,16 ; Jn 1,32">Iesum per effigiem columbae</quote>.
+                  <span ana="metaphore" type="aliment">Fuisse autem et in Christo etiam ex Achamoth spiritalis
+                  seminis condimentum, ne marcesceret scilicet reliqua
+                  farsura</span>. Nam <span ana="metaphore" type="aliment">in figuram principalis tetradis quatuor
+                  eum substantiis stipant</span>, spiritali Achamothiana, animali
+                  Demiurgina, corporali inenarratiua, et illa Sotericiana,
+                  id est columbina. Et Soter quidem permansit in Christo
+                  impassibilis inlaesibilis inadprehensibilis. Denique cum
+                  ad prehensiones uenitur, discessit ab illo, in cognitione
+                  Pilati. [3] Proinde nec matris semen admisit iniurias,
+                  aeque insubditiuum et ne ipsi quidem Demiurgo comper-
+                  tum. Patitur uero animalis et carneus Christus, in de-
+                  lineationem superioris Christi, qui, Achamoth formando
+                  substantiuali non agnitionali forma, Cruci id est Horo
+                  fuerat innixus. Ita omnia in imagines urgent, plane et
+                  ipsi imaginarii Christiani.</p>
+            </div2>
+            <div2 type="textpart" subtype="chapter" n="28">
+               <p>XXVIII. [1] Interea Demiurgus omnium adhuc nescius.
+                  Etsi aliquid et ipse per prophetas contionabatur, ne huius
+                  quidem operis sui intelligens ; diuidunt enim et prophetiale
+                  patrocinium in Achamoth, in semen, in Demiurgum.
+                  Vbi aduentum Soteris accepit, propere et ouanter accurrit
+                  cum omnibus suis uiribus - <quote n="Matth 8,5">centurio de euangelio</quote> -
+                  et de omnibus inluminatus ab illo etiam spem suam
+                  discit quod successurus sit in locum matris. [2] Ita exinde
+                  securus, dispensationem mundi huius, uel maxime
+                  ecclesiae protegendae nomine, quanto tempore oportuerit,
+                  insequitur.</p>
+            </div2>
+            <div2 type="textpart" subtype="chapter" n="29">
+               <p>XXIX. [1] Colligam nunc ex disperso ad concludendum
+                  quae de totius generis humani dispositione iusserant.
+                  Triformem naturam primordio professi et tamen
+                  inunitam in Adam, inde iam diuidunt per singulares generum
+                  proprietates, nacti occasionem distinctionis huiusmodi ex
+                  posteritate ipsius Adae, moralibus quoque differentiis
+                  tripertita. [2] <span ana="metaphore" type="eau">Cain et Abel, Seth, fontes quodammodo
+                  generis humani</span>, in totidem deriuant argumenta naturae
+                  atque sententiae : choicum, saluti degeneratum, ad Cain
+                  redigunt ; animale, mediae spei deliberatum, ad Abel
+                  componunt ; spiritale, certae saluti praeiudicatum, in
+                  Seth recondunt. Sic et animas ipsas duplici proprietate
+                  discernunt, bonas et malas, secundum choicum statum
+                  ex Cain et animalem ex Abel. [3] Spiritale enim ex Seth
+                  de obuenientia superducunt iam non naturam sed
+                  indulgentiam, <span ana="metaphore" type="eau">ut quod Achamoth de superioribus in animas
+                  bonas depluat</span>, id est animali censui inscriptas ; choicum
+                  enim genus, id est malas animas, numquam capere salutaria.
+                  Inmutabilem enim et inreformabilem naturae
+                  naturam pronuntiauerunt. Id ergo <span ana="metaphore" type="vegetal">granum seminis
+                  spiritalis modicum et paruulum iacitur</span>, sed eruditu
+                  huius fides augetur atque prouehitur, ut supra
+                  diximus, animaeque hoc ipso ita ceteris praeuerterant
+                  ut Demiurgus tunc ignorans magni eas fecerit. [4] Ex
+                  earum ergo laterculo in prophetas et in reges et in
+                  sacerdotes allegere consueuerat. Quae nunc quoque, si
+                  plenam atque perfectam notitiam adprehenderint
+                  istarum neniarum, naturificatae iam spiritalis condicionis
+                  germanitate, certam obtinebunt salutem, immo omnimodo
+                  debitam.</p>
+            </div2>
+            <div2 type="textpart" subtype="chapter" n="30">
+               <p>XXX. [1] Ideoque nec operationes necessarias sibi
+                  existimant nec ulla disciplinae munia obseruant, martyrii
+                  quoque eludentes necessitatem qua uolunt interpretatione.
+                  Hanc enim regulam animali semini praestitutam,
+                  ut salutem, quam non de priuilegio status possidemus,
+                  de suffragio actus elaboremus. Nobis enim inscriptura
+                  huius seminis qui imperfectae scientiae sumus, quia
+                  non norimus Philetum, <span ana="metaphore" type="etre">et utique abortui deputamur,
+                  quod mater illorum</span>. [2] Sed nobis quidem uae, <span ana="metaphore" type="domination">si excesserimus
+                  in aliquo disciplinae iugum</span>, si obtorpuerimus
+                  in operibus sanctitatis atque iustitiae, si confitendum
+                  alibi nescio ubi et non sub potestatibus istius saeculi
+                  apud tribunalia praesidum optauerimus. [3] Illi uero et
+                  de passiuitate uitae et diligentia delictorum generosi-
+                  tatem suam uindicent, blandiente suis Achamoth, quo-
+                  niam et ipsa delinquendo profecit. Nam et honorandorum
+                  coniugiorum supernorum gratia edicitur apud illos
+                  meditandum atque celebrandum semper sacramentum
+                  comiti, id est feminae, adhaerendi ; alioquin degenerem
+                  nec legitimum ueritatis qui deuersatus in mundo non
+                  amauerit feminam nec se ei iunxerit. Et quid facient
+                  spadones quos uidemus apud illos ?</p>
+            </div2>
+            <div2 type="textpart" subtype="chapter" n="31">
+               <p>XXXI. [1] Superest de consummatione et dispensatione
+                  mercedis. Vbi Achamoth totam massam seminis
+                  sui presserit, <span ana="metaphore" type="lieu">dein colligere in horreum coeperit</span>, uel cum
+                  <span ana="metaphore" type="aliment">ad molas delatum et defarinatum in consparsione salutari
+                  absconderit, donec totum confermentetur, tunc
+                  consummatio urgebit</span>. Igitur imprimis ipsa Achamoth
+                  de regione medietatis, de tabulato secundo in summum
+                  transferetur. Restitutam pleromati statim <span ana="metaphore" type="theatre">excipit
+                  compacticius ille Soter</span>, sponsus scilicet, ambo coniugium
+                  nouum fiet ; hic erit in scripturis sponsus, et sponsalis
+                  pleroma. (2.) Credas enim, ubi de loco in locum transmigratur,
+                  leges quoque Iulias interuenire. [2] <span ana="comparaison" type="theatre">Sicut ex
+                  scaena et Demiurgus tunc de hebdomade caelesti in
+                  superiora mutauit</span>, in uacuum iam caenaculum matris,
+                  sciens iam nec uidens illam. Nam, si ita erat, semper
+                  ignorare maluisset.</p>
+            </div2>
+            <div2 type="textpart" subtype="chapter" n="32">
+               <p>XXXII. [1] Humana uero gens in
+                  hoc exitus ibit : choicae et materialis notae totum interitum,
+                  <quote n="Is 40,6">quia omnis caro foenum</quote>. Et anima mortalis
+                  apud illos nisi quae salutem fide inuenerit. Iustorum
+                  animae, id est nostrae, ad Demiurgum in medietatis
+                  receptacula transmittentur - agimus gratias, contenti
+                  erimus cum deo nostro deputari - qua census animalis :
+                  nihil in pleromatis palatium admittitur, nisi <span ana="metaphore" type="animal">spiritale
+                  examen Valentini</span>. [2] Illic itaque <span ana="metaphore" type="corps">primo dispoliantur
+                  homines ipsi, id est interiores - dispoliari est autem
+                  deponere animas quibus induti uidebantur</span> - easque
+                  Demiurgo suo reddent quas ab eo auerterant ; ipsi autem
+                  spiritus in totum fient intellectuales neque detentui neque
+                  conspectui obnoxii, atque ita inuisibiliter in pleroma
+                  recipientur. <span ana="metaphore" type="maniere">Furtim</span>, si ita est. [3] Quid deinde ? Angelis
+                  distribuentur, satellitibus Soteris. In filios putas ? Non
+                  unus. Sed in adparitores ? Ne istud quidem. Sed in
+                  imagines ? Vtinam uel hoc ! In quid ergo, si non pudet
+                  dicere ? In sponsas. <span ana="metaphore" type="culture_antique">Tunc illi Sabinas raptas inter se
+                  de matrimoniis ludent</span>. Haec erit spiritalium merces,
+                  hoc praemium credendi. [4] Fabulae tales utiles ut Marcus
+                  aut Gaius, in hac carne barbatus et hac anima, seuerus
+                  maritus, pater, auus, proauus, certe quod sufficit masculus,
+                  in nymphone pleromatis, ab angelo… - tacendo iam
+                  dixi - et forsitan pariat aliquem Aeonesimum [aeonem].
+                  His nuptiis recte deducendis, pro face et flammeo tunc,
+                  credo, ille ignis arcanus erumpet et, uniuersam substan-
+                  tiam depopulatus, ipse quoque decineratis omnibus in
+                  nihilum finietur, et nulla iam fabula. [5] Sed ne ego
+                  temerarius qui tantum sacramentum etiam inludendo prodiderim.
+                  Verendum mihi est ne Achamoth, quae se nec filio
+                  agnitam uoluit, insaniat, ne Philetus irascatur, ne Fortunata
+                  acerbetur. Et tamen homo sum Demiurgi ; <quote n="Matth 22,30">illuc habeo
+                  deuertere post excessum ubi omnino non nubitur</quote>, <quote n="2 Cor 5, 2,4">ubi
+                  superindui potius quam dispoliari</quote>, ubi, etsi non
+                     dispolior sexui meo, deputor angelis, non angelus, non
+                     angela. Nemo mihi quicquam faciet, quem et tunc
+                     masculum inuenient.</p>
+            </div2>
+            <div2 type="textpart" subtype="chapter" n="33">
+               <p>XXXIII. [1] <span ana="comparaison" type="theatre">Producam denique uelut epicitharisma
+                  post fabulam tantam</span>, etiam illa quae, ne ordini obstreperent
+                  et lectoris intentionem interiectione dispargerent,
+                  hunc malui in locum distulisse, aliter atque aliter
+                  commendata ab emendatoribus Ptolemaei. <span ana="metaphore" type="route">Extiterunt enim
+                  de schola ipsius discipuli super magistrum</span>, qui duplex
+                  coniugium Bytho suo adfingerent, Cogitationem et
+                  Voluntatem. [2] Vna enim satis non erat Cogitatio, qua
+                  nihil producere potuisset. Ex duabus facillime prolatum,
+                  secundum coniugium, Monogenem Veritatem, ad
+                  imaginem quidem Cogitationis feminam Veritatem, ad
+                  imaginem Voluntatis marem Monogenem. Voluntatis
+                  enim uis, uti quae effectum praestat Cogitationi, uiritatis
+                  obtinet censum.</p>
+            </div2>
+            <div2 type="textpart" subtype="chapter" n="34">
+               <p>XXXIV. [1] Pudiciores alii, honorem diuinitatis recordati,
+                  ut etiam unius coniugis dedecus ab eo auellerent,
+                  maluerunt nullum Bytho sexum deputare, et fortasse
+                  « hoc deum », non « hic deus », neutro genere pronuntiant.
+                  [2] Alii contra magis et masculum et feminam dicunt, ne
+                  apud solos Lunenses hermaphroditum existimet
+                  « Annalium » commentator Fenestella.</p>
+            </div2>
+            <div2 type="textpart" subtype="chapter" n="35">
+               <p>XXXV. [1] Sunt [inquit] qui nec principatum Bytho
+                  defendant sed postumatum, ogdoadem ante omnia
+                  praemittentes, ex tetrade quidem et ipsam sed aliis nominibus
+                  deriuatam. Primo enim constituunt Proarchen, secundo
+                  Anennoeton, tertio Arrheton, quarto Aoraton. [2] Ex
+                  Proarche itaque processisse primo et quinto loco Archen,
+                  ex Anennoeto secundo et sexto loco Acatalepton, ex
+                  Arrheto tertio et septimo loco Anonomaston, ex Inuisibili
+                  quarto et octauo loco Agenneton. Hoc quae ratio disponat,
+                  ut singula binis locis et quidem tam intercisis nascantur,
+                  malo ignorare quam discere. Quid enim recti habent quae
+                  tam peruerse proferuntur ?</p>
+            </div2>
+            <div2 type="textpart" subtype="chapter" n="36">
+               <p>XXXVI. [1] Quanto meliores qui <span ana="metaphore" type="lieu">totum hoc taedium</span>
+                  de medio amoliti <span ana="comparaison" type="lieu">nullum aeonem uoluerunt alium ex
+                  alio per gradus reuera Gemonios structum</span>, <span ana="metaphore" type="jeux">sed mappa,
+                  quod aiunt, missa semel octoiugem istam ex Propatore
+                  et Ennoea eius excusam</span>. Ex ipso denique rerum motu
+                  nomina gerunt. [2] « Cum, inquiunt, cogitauit proferre
+                  hoc Pater dictus est. (2.) Cum protulit, quia uera
+                  protulit, hoc Veritas appellata est. Cum semetipsum uoluit
+                  probari, hoc Homo pronuntiatus est. Quos autem prae-
+                  cogitauit cum protulit, tunc Ecclesia nuncupata est.
+                  Sonuit Homo Sermonem - et hic est primogenitus filius -
+                  et Sermoni accessit Vita, et ogdoas prima conclusa est ».
+                  Sed hoc taedium non pusillum ! </p>
+            </div2>
+            <div2 type="textpart" subtype="chapter" n="37">
+               <p>XXXVII. [1] Accipe alia ingenia circulatori a insignioris
+                  apud eos magistri, qui <span ana="metaphore" type="autorité">ex pontificali sua auctoritate</span>
+                  in hunc modum censuit : « Est, inquit, ante omnia
+                  Proarche, inexcogitabile et inenarrabile, innominabile, quod
+                  ego nomino Monoteta. Cum hac erat alia uirtus, quam
+                  et ipsam appello Henoteta. [2] &lt;Monotes et Henotes&gt; -
+                  id est Solitas et Vnitas - cum unum essent, protulerunt,
+                  non proferentes, initium omnium intellectuale, innascibile,
+                  inuisibile, quod sermo &lt;Monada&gt; uocauit ; huic
+                  adest consubstantiua uirtus, quam appellat Vnionem.
+                  Haec igitur uirtutes, Solitas, Vnitas, &lt;Singularitas&gt;,
+                  Vnio, ceteras prolationes aeonum propagarunt ». O
+                  differentia ! Mutetur Vnio et Vnitas et Singularitas
+                  [et suum] et Solitas, quaqua designaueris, unum est !</p>
+            </div2>
+            <div2 type="textpart" subtype="chapter" n="38">
+               <p>XXXVIII. Humanior iam Secundus ut breuior,
+                  ogdoadem in duas tetradas diuidens, in dexteram et
+                  sinistram, in lumen et tenebras, tantum quod desultricem
+                  et defectricem illam uirtutem non uult ab aliquo
+                  deducere aeonum, <span ana="metaphore" type="fruit">sed a fructibus de &lt;eorum&gt;
+                  substantia ueniat</span>.</p>
+            </div2>
+            <div2 type="textpart" subtype="chapter" n="39">
+               <p>XXXIX. [1] De ipso iam domino Iesu <span ana="metaphore" type="lieu">quanta di-
+                  uersitas scinditur</span> ! <span ana="metaphore" type="vegetal">Hi ex omnium aeonum flosculis eum
+                  construunt</span> ; illi ex solis decem constitisse contendunt
+                  quos Sermo et Vita protulerunt, inde et in ipsum Sermonis
+                  et Vitae concurrerunt tituli ; <span ana="metaphore" type="corps">isti ex duodecim potius
+                  ex Hominis et Ecclesiae fetu</span>, ideoque Filium Hominis
+                  auite pronuntiatum ; alii a Christo et Spiritu Sancto
+                  constabiliendae uniuersitati prouisis confictum et inde
+                  paternae appellationis heredem. [2] Sunt qui Filium
+                  Hominis aliunde conceperint dicendum, quoniam ipsum
+                  patrem pro magno nominis sacramento Hominem appellasse
+                  praesumpserint, ut quid amplius speres de eius
+                  dei fide cui nomine adaequaris. <span ana="metaphore" type="vegetal">Talia ingenia
+                  superfructificant apud illos</span> <span ana="metaphore" type="eau">ex materni seminis redundantia</span>.
+                  <span ana="metaphore" type="vegetal">Atque ita inolescentes doctrinae Valentinianorum in
+                  siluas iam exoleuerunt Gnosticorum.</span></p>
+
+                <div3>
+             <p>Tertullien, Contre les Valentiniens, éd. Jean-Claude Fredouille, Paris, 1980 (Sources chrétiennes 280).</p>
+         </div3>
+        </div2>
+       </div1>
+      </body>
+  </text>
+</TEI>
