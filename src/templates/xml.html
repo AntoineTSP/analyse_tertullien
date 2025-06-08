@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 1rem; }
+        .metadata { background: #f8f8f8; padding: 1rem; margin-bottom: 2rem; border-left: 4px solid #ccc; }
+        .body-text { border-top: 1px solid #ddd; padding-top: 1rem; }
+        span[ana] { background-color: #ffffcc; }
+        .highlight {
+        background-color: yellow;
+        cursor: pointer;
+        }
+        /* Highlight spans with ana attribute */
+        span[ana] {
+        background-color: yellow;
+        cursor: pointer;
+        position: relative;
+        }
+
+        /* Tooltip styling */
+        span[ana]::after {
+        content: attr(title);
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: orange;
+        color: red;
+        padding: 6px 10px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        border-radius: 4px;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.1s ease-in-out;
+        z-index: 1000;
+        margin-bottom: 8px; /* optional offset */
+        }
+
+        /* Show tooltip on hover */
+        span[ana]:hover::after {
+        opacity: 1;
+        pointer-events: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ title }}</h1>
+    <div class="metadata">
+        <h2>Metadata</h2>
+        <p><strong>Author:</strong> {{ author }}</p>
+        <p><strong>Project Description:</strong> {{ project_desc }}</p>
+        <p><strong>Normalization:</strong> {{ normalization }}</p>
+        <p><strong>Punctuation:</strong> {{ punctuation }}</p>
+        <p><strong>Languages:</strong> {{ languages | join(', ') }}</p>
+        <p><strong>Licence:</strong> {{ licence }}</p>
+
+        <h3>Responsibility Statements</h3>
+        <ul>
+            {% for resp in resp_stmts %}
+            <li>
+                <strong>{{ resp.name }}</strong> ({{ resp.id }}) – {{ resp.responsibility }} on {{ resp.date }}
+            </li>
+            {% endfor %}
+        </ul>
+
+        <h3>Witnesses</h3>
+        <ul>
+            {% for wit in witnesses %}
+            <li>
+                <strong>{{ wit.title }}</strong> by {{ wit.author.forename }} {{ wit.author.surname }}<br>
+                Published by {{ wit.publishers | join(', ') }} in {{ wit.pub_place }} ({{ wit.date }})<br>
+                Pages: {{ wit.pages }}<br>
+                <a href="{{ wit.link }}">Source Link</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="body-text">
+        {{ body_html | safe }}
+    </div>
+</body>
+</html>

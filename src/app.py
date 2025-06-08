@@ -1,6 +1,7 @@
 import os
+from pathlib import Path
 
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, Response
 from fastapi.requests import Request
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
@@ -9,7 +10,7 @@ from keras.models import load_model
 
 from embedding.embedding_factory import EmbeddingFactory
 from preprocess.lemmatiseur import PyrrhaLemmatiseur
-from utils.converter import get_model_summary
+from utils.converter import add_title_to_spans, get_model_summary, parse_full_tei
 
 app = FastAPI()
 app.mount("/img", StaticFiles(directory="static/img"), name="img")
@@ -37,12 +38,12 @@ async def welcome_page(request: Request):
 
 
 @app.get("/health")
-def health_check():
+async def health_check():
     return {"status": "ok", "message": "API is running successfully."}
 
 
 @app.get("/get_corpus")
-def get_corpus(request: Request):
+async def get_corpus(request: Request):
     # -----Preprocess-----
     pyrrha_lemmatiseur = PyrrhaLemmatiseur(tsv_folder_path="data/Pyrrha")
     pyrrha_lemmatiseur.obtain_corpus_lemma(output_file="raw_text_lemma")
@@ -51,7 +52,7 @@ def get_corpus(request: Request):
 
 
 @app.get("/model_json")
-def get_model_json(request: Request):
+async def get_model_json(request: Request):
     if os.path.exists("data/models/test.keras"):
         model = load_model("data/models/test.keras")
         model_json = model.to_json()
@@ -76,7 +77,7 @@ def get_model_json(request: Request):
 
 
 @app.get("/model_summary", response_class=HTMLResponse)
-def model_summary(request: Request):
+async def model_summary(request: Request):
     if os.path.exists("data/models/test.keras"):
         model = load_model("data/models/test.keras")
         summary = get_model_summary(model)
@@ -101,7 +102,7 @@ def model_summary(request: Request):
 
 
 @app.get("/nem_embedding")
-def new_embedding(request: Request):
+async def new_embedding(request: Request):
     if os.path.exists("data/models/test.keras"):
         model = load_model("data/models/test.keras")
     else:
@@ -122,7 +123,7 @@ def new_embedding(request: Request):
 
 
 @app.get("/fit")
-def dashboard(request: Request):
+async def dashboard(request: Request):
     pyrrha_lemmatiseur = PyrrhaLemmatiseur(tsv_folder_path="data/Pyrrha")
     data = pyrrha_lemmatiseur.obtain_list_sequences(raw_text_lemma_file="raw_text_lemma")
     # -----Embedding-----
@@ -141,3 +142,20 @@ def dashboard(request: Request):
         "accuracy": embedding_factory.get_accuracy(X_test=X_test, y_test=y_test),
         "training_logs": logs,
     }
+
+
+@app.get("/xml", response_class=Response)
+async def get_xml():
+    xml_path = Path("./data/xml/Idol.xml")
+    if not xml_path.exists():
+        return Response(content="File not found", status_code=404)
+
+    content = xml_path.read_text(encoding="utf-8")
+    return Response(content=content, media_type="application/xml")
+
+
+@app.get("/xml_to_html", response_class=HTMLResponse)
+async def render_full2_tei(request: Request):
+    data = parse_full_tei("./data/xml/Val_2.xml")  # your function generating html string
+    data["body_html"] = add_title_to_spans(data["body_html"])
+    return templates.TemplateResponse("xml.html", {"request": request, **data})
