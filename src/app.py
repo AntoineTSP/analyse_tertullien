@@ -7,6 +7,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from keras.models import load_model
 
+from author_classification.dataset_factory import DatasetFactory
 from embedding.embedding_factory import EmbeddingFactory
 from preprocess.lemmatiseur import PyrrhaLemmatiseur
 from utils.converter import (
@@ -176,3 +177,14 @@ async def get_some_annotation(request: Request):
     annotations = get_all_annotations(xml_path="./data/xml/Pall2")
     annotations = annotations.get("metaphore", [])
     return JSONResponse(content=annotations)
+
+
+@app.get("/classification")
+async def classification(request: Request):
+    dataset_factory = DatasetFactory()
+    df = dataset_factory.get_dataframe_dataset()
+    df, le = dataset_factory.encode_variable(df)
+    print(df[98:110].head())
+    print(dataset_factory.get_labels_classes(le))
+    # get train/test to be done ...
+    return JSONResponse(content={"message": "Classification endpoint is under construction."})
