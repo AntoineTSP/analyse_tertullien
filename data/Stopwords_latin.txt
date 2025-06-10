@@ -3948,3 +3948,8 @@ ait
 aitque
 aiunt
 aiuntque
+s
+m
+n
+p
+o
