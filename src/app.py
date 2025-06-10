@@ -1,11 +1,15 @@
 import os
 from pathlib import Path
 
+import gensim.downloader
+import numpy as np
 from fastapi import FastAPI, Request, Response
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from gensim.models.word2vec import Word2Vec
 from keras.models import load_model
+from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 
 from author_classification.dataset_factory import DatasetFactory
 from embedding.embedding_factory import EmbeddingFactory
@@ -186,5 +190,35 @@ async def classification(request: Request):
     df, le = dataset_factory.encode_variable(df)
     print(df[98:110].head())
     print(dataset_factory.get_labels_classes(le))
-    # get train/test to be done ...
-    return JSONResponse(content={"message": "Classification endpoint is under construction."})
+    X_train, X_test, y_train, y_test = dataset_factory.split_train_test(df)
+    print(dataset_factory.get_label_to_author(le=le, y_train=y_train))
+    proportion = dataset_factory.get_proportion_label_in_sets(y_train=y_train, y_test=y_test, le=le)
+    print(proportion)
+    dataset_factory.plot_all_authors_top_words(X_train=X_train, y_train=y_train, le=le, n_words=12)
+    # Bag-of-words
+    cv_bow = dataset_factory.fit_vectorizers(CountVectorizer, x_train=X_train, y_train=y_train)
+    # TF-IDF
+    cv_tfidf = dataset_factory.fit_vectorizers(TfidfVectorizer, x_train=X_train, y_train=y_train)
+    # Word2Vec
+    X_train_tokens = [text.split() for text in X_train]
+    w2v_model = Word2Vec(X_train_tokens, vector_size=200, window=5, min_count=1, workers=4)
+    cv_w2vec = dataset_factory.fit_w2v_avg(w2v_model.wv, x_train_tokens=X_train_tokens, y_train=y_train)
+    # Word2Vec pre-trained
+    glove_model_path = "data/models/glove-wiki-gigaword-200.model"
+    if not os.path.exists(glove_model_path):
+        glove_model = gensim.downloader.load("glove-wiki-gigaword-200")
+        glove_model.save(glove_model_path)
+    else:
+        glove_model = gensim.models.KeyedVectors.load(glove_model_path)
+    cv_w2vec_transfert = dataset_factory.fit_w2v_avg(
+        glove_model, x_train_tokens=X_train_tokens, y_train=y_train
+    )
+
+    return JSONResponse(
+        content={
+            "Bag-of-Words": np.mean(cv_bow.cv_results_["mean_test_score"]),
+            "TF-IDF": np.mean(cv_tfidf.cv_results_["mean_test_score"]),
+            "Word2Vec non pré-entraîné": np.mean(cv_w2vec),
+            "Word2Vec pré-entraîné": np.mean(cv_w2vec_transfert),
+        }
+    )
