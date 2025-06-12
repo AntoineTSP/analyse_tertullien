@@ -7,14 +7,19 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import seaborn as sns
+from PIL import Image
+from sklearn.calibration import CalibratedClassifierCV
 from sklearn.model_selection import GridSearchCV, cross_val_score, train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import LabelEncoder, StandardScaler
-from sklearn.svm import LinearSVC
+from sklearn.svm import SVC, LinearSVC
+from wordcloud import WordCloud
 
 
 class DatasetFactory:
-    def __init__(self):
+    def __init__(self, clf_type: str = "LinearSVC"):
+        if not clf_type in ["SVM", "LinearSVC"]:
+            raise ValueError("clf_type must be 'SVM' or 'LinearSVC'")
         with open("data/Stopwords_latin.txt", "r", encoding="utf-8") as stop_words_file:
             self.stop_words = stop_words_file.read().splitlines()
         print(f"Stop words loaded: {len(self.stop_words)}")
@@ -24,7 +29,11 @@ class DatasetFactory:
         self.text_apol = self.get_text_and_clean("data/author_classification/Tert_Apol.txt")
         self.nb_sequences = 100
         # Avec un modèle SVM linéaire
-        self.clf = LinearSVC(max_iter=10000, C=0.1, dual="auto")
+        if clf_type == "SVM":
+            base_clf = SVC(kernel="linear", probability=True)
+        if clf_type == "LinearSVC":
+            base_clf = LinearSVC(max_iter=10000, C=0.1, dual="auto")
+            self.clf = CalibratedClassifierCV(base_clf)
 
     def get_text_and_clean(self, text_path: str) -> list[str]:
         with open(text_path, "r", encoding="utf-8") as file:
@@ -46,6 +55,34 @@ class DatasetFactory:
         text = " ".join(words)
 
         return text
+
+    def create_wordcloud(self, text: str, title: str = "Word Cloud"):
+        """
+        Create a word cloud from the given text and display it.
+
+        Args:
+            text (str): The text to generate the word cloud from.
+            title (str): The title of the word cloud.
+        """
+        book_mask = np.array(Image.open("./static/img/book.png"))
+
+        wordcloud = WordCloud(
+            background_color="white",
+            max_words=100,
+            mask=book_mask,
+            contour_width=3,
+            contour_color="steelblue",
+            width=400,  # Further reduce width for smaller resolution
+            height=400,  # Further reduce height for smaller resolution
+        ).generate(text)
+
+        plt.figure(figsize=(12, 6))  # Adjust figure size for better display
+        plt.imshow(wordcloud, interpolation="bilinear")
+        plt.axis("off")
+        plt.title(title)
+        plt.savefig(
+            f"./plot/{title.replace(' ', '_')}.png", dpi=300
+        )  # Save with higher DPI for better quality
 
     def get_dataframe_dataset(self):
 
@@ -158,7 +195,7 @@ class DatasetFactory:
         plt.savefig("./plot/Distribution_mots.png")
         plt.show()
 
-    def fit_vectorizers(self, vectorizer, x_train, y_train):
+    def fit_vectorizers(self, vectorizer, x_train, y_train) -> GridSearchCV:
         """
         Fit a vectorizer and train a linear SVM model using GridSearchCV.
 
@@ -213,9 +250,13 @@ class DatasetFactory:
         def get_mean_vector(w2v_vectors, words):
             words = [word for word in words if word in w2v_vectors]
             if words:
-                avg_vector = np.mean(w2v_vectors[words], axis=0)
+                avg_vector = np.mean([w2v_vectors[word] for word in words], axis=0)
             else:
-                avg_vector = np.zeros_like(w2v_vectors["hi"])
+                try:
+                    vector_size = w2v_vectors.vector_size
+                except AttributeError:
+                    vector_size = w2v_vectors.shape[1]
+                avg_vector = np.zeros(vector_size)
             return avg_vector
 
         X_train_vectors = np.array([get_mean_vector(w2v_vectors, words) for words in x_train_tokens])
@@ -224,4 +265,48 @@ class DatasetFactory:
         print("Fitting Word2Vec average vectors...")
         print(f"CV scores {scores}")
         print(f"Mean F1 {np.mean(scores)}")
-        return scores
+        self.clf.fit(X_train_vectors, y_train)
+        return self.clf, scores
+
+    def predict_author_from_text_with_bag(self, text: str, cv_bow: GridSearchCV, le: LabelEncoder) -> str:
+        """
+        Predict the author of a given text using a fitted Bag of Words model.
+
+        Args:
+            text (str): The text to classify.
+            cv_bow (GridSearchCV): The fitted Bag of Words model.
+            le (LabelEncoder): The label encoder for decoding labels.
+
+        Returns:
+            str: The predicted author.
+        """
+        # Directly use the full pipeline:
+        prediction = cv_bow.predict([text])
+        probs = cv_bow.predict_proba([text])
+        predicted_author = le.inverse_transform(prediction)[0]
+        return predicted_author, {le.inverse_transform([i])[0]: prob for i, prob in enumerate(probs[0])}
+
+    def predict_author_from_text_w2v(self, text: str, w2v_vectors, le: LabelEncoder, clf: LinearSVC) -> str:
+        """
+        Predict the author of a given text using averaged Word2Vec vectors.
+
+        Args:
+            text (str): The text to classify.
+            w2v_vectors: Trained Word2Vec KeyedVectors.
+            le (LabelEncoder): The label encoder for decoding labels.
+
+        Returns:
+            str: The predicted author.
+        """
+        tokens = text.split()
+        words = [word for word in tokens if word in w2v_vectors]
+        if words:
+            avg_vector = np.mean([w2v_vectors[word] for word in words], axis=0)
+        else:
+            avg_vector = np.zeros(w2v_vectors.vector_size)
+
+        # Predict
+        prediction = clf.predict(avg_vector.reshape(1, -1))
+        probs = clf.predict_proba(avg_vector.reshape(1, -1))
+        predicted_author = le.inverse_transform(prediction)[0]
+        return predicted_author, {le.inverse_transform([i])[0]: prob for i, prob in enumerate(probs[0])}
