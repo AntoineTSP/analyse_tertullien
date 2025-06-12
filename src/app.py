@@ -3,7 +3,7 @@ from pathlib import Path
 
 import gensim.downloader
 import numpy as np
-from fastapi import FastAPI, Request, Response
+from fastapi import FastAPI, Query, Request, Response
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -17,6 +17,7 @@ from preprocess.lemmatiseur import PyrrhaLemmatiseur
 from utils.converter import (
     add_title_to_spans,
     get_all_annotations,
+    get_all_annotations_categories,
     get_model_summary,
     parse_full_tei,
 )
@@ -26,6 +27,7 @@ app.mount("/img", StaticFiles(directory="static/img"), name="img")
 
 # Serve the HTML template
 templates = Jinja2Templates(directory="templates")
+templates.env.filters["tojson"] = lambda value: value  # fallback, not needed if Jinja2 >=3.1
 
 # ----------------------------------------------------------------------------------------
 # Welcome page
@@ -48,6 +50,40 @@ async def welcome_page(request: Request):
             {"name": "Go to Route Text Annotation Section", "url": "/text_annotation"},
             {"name": "Go to Route Author Classification", "url": "/author_classification"},
         ],
+        # Working
+        # "form_routes": [
+        #     {
+        #         "name": "Go to predict_author",
+        #         "url": "/author_classification/predict_author/",
+        #         "parameters": [
+        #             {"label": "Classifier Type", "param_name": "clf_type"},
+        #             {"label": "Text on which we want a predicted author", "param_name": "text_to_predict"},
+        #         ],
+        #     },
+        # ],
+        # Fail
+        # "form_routes": [
+        #     {
+        #         "name": "Go to predict_author",
+        #         "url": "/author_classification/predict_author/",
+        #         "parameters": [
+        #             {
+        #                 "label": "Classifier Type",
+        #                 "param_name": "clf_type",
+        #                 "type": "select",
+        #                 "choices": ["SVM", "LinearSVC"],
+        #             },
+        #             {"label": "Other Param", "param_name": "option", "type": "text"},
+        #         ],
+        #     },
+        #     {
+        #         "name": "Embedding Route",
+        #         "url": "/embedding",
+        #         "parameters": [
+        #             {"label": "Text to embed", "param_name": "text", "type": "text"},
+        #         ],
+        #     },
+        # ],
     }
     return templates.TemplateResponse("welcome.html", context)
 
@@ -203,42 +239,101 @@ async def text_annotation_page(request: Request):
         ],
         "buttons": [
             {"name": "Go to Welcome page", "url": "/"},
-            {"name": "Go to Route XML", "url": "/text_annotation/xml"},
-            {"name": "Go to Route XML to HTML", "url": "/text_annotation/xml_to_html"},
-            {"name": "Go to Route Get Annotation", "url": "/text_annotation/get_annotation"},
-            {"name": "Go to Route Get Some Annotation", "url": "/text_annotation/get_some_annotation"},
+            {
+                "name": "Get all figure of speech categories",
+                "url": "/text_annotation/get_annotations_categories",
+            },
+        ],
+        "form_routes": [
+            {
+                "name": "Get the XML of a text",
+                "url": "/text_annotation/xml/",
+                "parameters": [
+                    {"label": "XML file to be displayed", "param_name": "xml_path"},
+                ],
+            },
+            {
+                "name": "Get the Interactive HTML of a XML",
+                "url": "/text_annotation/xml_to_html/",
+                "parameters": [
+                    {"label": "XML file to be displayed", "param_name": "xml_path"},
+                ],
+            },
+            {
+                "name": "Retrieve all/some figure of speech annotations on the provided XML",
+                "url": "/text_annotation/get_annotation/",
+                "parameters": [
+                    {"label": "XML file to be displayed", "param_name": "xml_path"},
+                    {"label": "Figure of speech to select", "param_name": "annotation"},
+                ],
+            },
         ],
     }
     return templates.TemplateResponse("welcome.html", context)
 
 
 @app.get("/text_annotation/xml", response_class=Response)
-async def get_xml():
-    xml_path = Path("./data/xml/Pall2.xml")
+async def get_xml(xml_path: str = Query(description="Path to the XML file")):
+    if xml_path == "":
+        xml_path = "Pall2.xml"
+    xml_path = Path(f"./data/xml/{xml_path}")
     if not xml_path.exists():
-        return Response(content="File not found", status_code=404)
+        return Response(
+            content="File not found. It only supports Cult2.xml | Idol.xml | Mart2.xml | Pall2.xml | Val_2.xml",
+            status_code=404,
+        )
 
     content = xml_path.read_text(encoding="utf-8")
     return Response(content=content, media_type="application/xml")
 
 
+@app.get("/text_annotation/get_annotations_categories")
+async def get_annotations_categories(
+    request: Request,
+):
+    annotations_categories = get_all_annotations_categories()
+    return JSONResponse(content=annotations_categories)
+
+
 @app.get("/text_annotation/xml_to_html", response_class=HTMLResponse)
-async def render_full2_tei(request: Request):
-    data = parse_full_tei("./data/xml/Pall2.xml")  # your function generating html string
+async def xml_to_html(request: Request, xml_path: str = Query(description="Path to the XML file")):
+    if xml_path == "":
+        xml_path = "Pall2.xml"
+    xml_path = Path(f"./data/xml/{xml_path}")
+    if not xml_path.exists():
+        return Response(
+            content="File not found. It only supports Cult2.xml | Idol.xml | Mart2.xml | Pall2.xml | Val_2.xml",
+            status_code=404,
+        )
+    data = parse_full_tei(xml_path)  # your function generating html string
     data["body_html"] = add_title_to_spans(data["body_html"])
     return templates.TemplateResponse("xml.html", {"request": request, **data})
 
 
 @app.get("/text_annotation/get_annotation")
-async def get_annotation(request: Request):
-    annotations = get_all_annotations(xml_path="./data/xml/Pall2")
-    return JSONResponse(content=annotations)
-
-
-@app.get("/text_annotation/get_some_annotation")
-async def get_some_annotation(request: Request):
-    annotations = get_all_annotations(xml_path="./data/xml/Pall2")
-    annotations = annotations.get("metaphore", [])
+async def get_annotation(
+    request: Request,
+    xml_path: str = Query(description="Path to the XML file"),
+    annotation: str = Query(description="Which figure of speech to select"),
+):
+    if xml_path == "":
+        xml_path = "Pall2.xml"
+    xml_path = Path(f"./data/xml/{xml_path}")
+    if not xml_path.exists():
+        return Response(
+            content="File not found. It only supports Cult2.xml | Idol.xml | Mart2.xml | Pall2.xml | Val_2.xml",
+            status_code=404,
+        )
+    annotations = get_all_annotations(xml_path=xml_path)
+    if annotation != "":
+        if annotation in get_all_annotations_categories():
+            annotations = annotations[annotation]
+        else:
+            return Response(
+                content=f"Figure of speech {annotation} has not been annotated. Supported ones are {get_all_annotations_categories()}",
+                status_code=404,
+            )
+    annotations = {"xml_path": str(xml_path), **annotations}
     return JSONResponse(content=annotations)
 
 
@@ -267,8 +362,23 @@ async def author_classification(request: Request):
             {"name": "Get Labels Classes", "url": "/author_classification/get_labels_classes"},
             {"name": "Get Author Repartition", "url": "/author_classification/get_author_repartition"},
             {"name": "Plot Top words", "url": "/author_classification/plot_top_words"},
-            {"name": "Get Accuracy for each model", "url": "/author_classification/get_accuracy"},
-            {"name": "Predict author from text", "url": "/author_classification/predict_author"},
+        ],
+        "form_routes": [
+            {
+                "name": "Get Accuracy for each model",
+                "url": "/author_classification/get_accuracy",
+                "parameters": [
+                    {"label": "Classifier Type", "param_name": "clf_type"},
+                ],
+            },
+            {
+                "name": "Go to predict_author",
+                "url": "/author_classification/predict_author/",
+                "parameters": [
+                    {"label": "Classifier Type", "param_name": "clf_type"},
+                    {"label": "Text on which we want a predicted author", "param_name": "text_to_predict"},
+                ],
+            },
         ],
     }
     return templates.TemplateResponse("welcome.html", context)
@@ -355,8 +465,13 @@ async def plot_top_words(request: Request):
 
 
 @app.get("/author_classification/get_accuracy")
-async def get_accuracy(request: Request):
-    dataset_factory = DatasetFactory(clf_type="LinearSVC")
+async def get_accuracy(
+    request: Request,
+    clf_type: str = Query(description="Type of classifier to use (e.g., LinearSVC, SVM)"),
+):
+    if clf_type == "":
+        clf_type = "LinearSVC"
+    dataset_factory = DatasetFactory(clf_type=clf_type)
     df = dataset_factory.get_dataframe_dataset()
     df, le = dataset_factory.encode_variable(df)
     X_train, X_test, y_train, y_test = dataset_factory.split_train_test(df)
@@ -397,8 +512,15 @@ async def get_accuracy(request: Request):
 
 
 @app.get("/author_classification/predict_author")
-async def predict_author(request: Request):
-    dataset_factory = DatasetFactory(clf_type="LinearSVC")
+async def predict_author(
+    clf_type: str = Query(description="Type of classifier to use (e.g., LinearSVC, SVM)"),
+    text_to_predict: str = Query(description="Text to predict author for"),
+):
+    if text_to_predict == "":
+        text_to_predict = "Quid bene amat bene castigat"
+    if clf_type == "":
+        clf_type = "LinearSVC"
+    dataset_factory = DatasetFactory(clf_type=clf_type)
     df = dataset_factory.get_dataframe_dataset()
     df, le = dataset_factory.encode_variable(df)
     X_train, X_test, y_train, y_test = dataset_factory.split_train_test(df)
@@ -424,10 +546,6 @@ async def predict_author(request: Request):
     clf_w2vec_transfer, cv_w2vec_transfert = dataset_factory.fit_w2v_avg(
         glove_model, x_train_tokens=X_train_tokens, y_train=y_train
     )
-
-    text_to_predict = "crura prodigae nec intra genua inverecundae nec brachiis parcae"
-    # text_to_predict = "nihil causa sua deprecatur condicione miratur scit se peregrinam terris agere inter extraneos facile inimicos invenire ceterum genus sedem spem gratiam dignitatem caelis habere unum gestit interdum ne ignorata damnetur quid hic deperit legibus suo regno dominantibus audiatur an magis gloriabitur potestas eorum quo auditam damnabunt veritatem ceterum inauditam damnent praeter invidiam iniquitatis suspicionem merebuntur alicuius conscientiae nolentes audire auditum damnare possint hanc itaque primam causam apud vos collocamus iniquitatis odii erga nomen christianorum iniquitatem idem"
-    # text_to_predict = "j'aime les pommes et les poires, mais je préfère les pommes."
 
     predic_bow, probs_bow = dataset_factory.predict_author_from_text_with_bag(
         text=text_to_predict, cv_bow=cv_bow, le=le
@@ -459,3 +577,11 @@ async def predict_author(request: Request):
             },
         }
     )
+
+
+# Test ------------------------------------------
+
+
+@app.get("/custom_route", response_class=HTMLResponse)
+async def custom_route(request: Request, text: str = Query(None), option: str = Query(None)):
+    return templates.TemplateResponse("redirect.html", {"request": request, "text": text, "option": option})

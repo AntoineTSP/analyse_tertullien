@@ -9,6 +9,28 @@ from tensorflow.keras import Model
 
 NS = {"tei": "http://www.tei-c.org/ns/1.0"}
 
+ANNOTATIONS = {
+    "metaphore": {},
+    "comparaison": {},
+    "personnification": {},
+    "enargeia": {},
+    "dialogisme": {},
+    "deductio_ad_absurdum": {},
+    "symbolisme": {},
+    "exemple": {},
+    "militaire": {},
+    "retorsion_inversée": {},
+    "irreel": {},
+    "epiphoneme": {},
+    "ab_absurdo": {},
+    "ab_origine": {},
+    "calembour": {},
+    "dicton": {},
+    "prosopopeia": {},
+    "scene": {},
+    "corps": {},
+}
+
 
 def get_model_summary(model: Model) -> str:
     stream = StringIO()
@@ -131,42 +153,26 @@ def add_title_to_spans(html_string: str) -> str:
 
 
 def get_all_annotations(xml_path: str):
-    xmlstr = ET.parse(f"{xml_path}.xml")
+    xmlstr = ET.parse(xml_path)
     root = xmlstr.getroot()
     new_root = root[1][0]
 
-    annotations = {
-        "metaphore": {},
-        "comparaison": {},
-        "personnification": {},
-        "enargeia": {},
-        "dialogisme": {},
-        "deductio_ad_absurdum": {},
-        "symbolisme": {},
-        "exemple": {},
-        "militaire": {},
-        "retorsion_inversée": {},
-        "irreel": {},
-        "epiphoneme": {},
-        "ab_absurdo": {},
-        "ab_origine": {},
-        "calembour": {},
-        "dicton": {},
-        "prosopopeia": {},
-        "scene": {},
-        "corps": {},
-    }
+    annotations_copy = ANNOTATIONS.copy()
 
     for i in range(len(new_root[2])):
         chapter_header = f"Chapitre {i + 1}"
 
-        for key, value in annotations.items():
+        for key, value in annotations_copy.items():
             value[chapter_header] = []
 
         for deep6 in new_root[2][i][0]:
             ana = deep6.attrib.get("ana")
-            if ana and ana in annotations:
+            if ana and ana in annotations_copy:
                 content = " ".join((deep6.text or "").split())
-                annotations[ana][chapter_header].append(content)
+                annotations_copy[ana][chapter_header].append(content)
 
-    return annotations
+    return annotations_copy
+
+
+def get_all_annotations_categories():
+    return list(ANNOTATIONS.keys())

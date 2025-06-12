@@ -29,5 +29,33 @@
             <button onclick="location.href='{{ button.url }}'">{{ button.name }}</button>
         {% endfor %}
     </div>
+
+    {% for form in form_routes %}
+    {% set form_index = loop.index %}
+    <div class="form-section">
+        <h3>{{ form.name }}</h3>
+
+        {% for param in form.parameters %}
+            <label>{{ param.label }}:</label>
+            <input type="text" id="{{ param.param_name }}_{{ form_index }}">
+            <br/>
+        {% endfor %}
+
+        <button onclick="redirectTo('{{ form.url }}', {{ form_index }}, {{ form.parameters | tojson | safe }})">Go</button>
+    </div>
+    {% endfor %}
+
+    <script>
+        function redirectTo(baseUrl, index, parameters) {
+            let url = baseUrl + "?";
+            const params = [];
+            parameters.forEach(param => {
+                const value = document.getElementById(param.param_name + "_" + index).value;
+                params.push(param.param_name + "=" + encodeURIComponent(value));
+            });
+            url += params.join("&");
+            window.location.href = url;
+        }
+    </script>
 </body>
 </html>

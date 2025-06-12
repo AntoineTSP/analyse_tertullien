@@ -18,7 +18,7 @@ from wordcloud import WordCloud
 
 class DatasetFactory:
     def __init__(self, clf_type: str = "LinearSVC"):
-        if not clf_type in ["SVM", "LinearSVC"]:
+        if not clf_type in ["SVC", "LinearSVC"]:
             raise ValueError("clf_type must be 'SVM' or 'LinearSVC'")
         with open("data/Stopwords_latin.txt", "r", encoding="utf-8") as stop_words_file:
             self.stop_words = stop_words_file.read().splitlines()
@@ -29,8 +29,8 @@ class DatasetFactory:
         self.text_apol = self.get_text_and_clean("data/author_classification/Tert_Apol.txt")
         self.nb_sequences = 100
         # Avec un modèle SVM linéaire
-        if clf_type == "SVM":
-            base_clf = SVC(kernel="linear", probability=True)
+        if clf_type == "SVC":
+            self.clf = SVC(kernel="linear", probability=True)
         if clf_type == "LinearSVC":
             base_clf = LinearSVC(max_iter=10000, C=0.1, dual="auto")
             self.clf = CalibratedClassifierCV(base_clf)
