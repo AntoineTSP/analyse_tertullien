@@ -88,6 +88,11 @@ async def welcome_page(request: Request):
     return templates.TemplateResponse("welcome.html", context)
 
 
+@app.get("/health")
+async def health_check():
+    return {"status": "ok", "message": "API is running successfully."}
+
+
 # ----------------------------------------------------------------------------------------
 # Embedding Section
 # ----------------------------------------------------------------------------------------
@@ -105,33 +110,76 @@ async def embedding_page(request: Request):
         ],
         "buttons": [
             {"name": "Go to Route Welcome", "url": "/"},
-            {"name": "Go to Route Get Corpus", "url": "/embedding/get_corpus"},
-            {"name": "Go to Route Fit Model", "url": "/embedding/fit"},
-            {"name": "Go to Route Model JSON", "url": "/embedding/model_json"},
-            {"name": "Go to Route Model Summary", "url": "/embedding/model_summary"},
-            {"name": "Go to Route New Embedding", "url": "/embedding/nem_embedding"},
         ],
+        "form_routes": [
+            {
+                "name": "Get corpus from tsv",
+                "url": "/embedding/get_corpus",
+                "parameters": [
+                    {"label": "TSV folder to read from", "param_name": "tsv_folder_path"},
+                ],
+            },
+            {
+                "name": "Fit a LSTM model",
+                "url": "/embedding/fit",
+                "parameters": [
+                    {"label": "TSV folder to read from", "param_name": "tsv_folder_path"},
+                ],
+            },
+            {
+                "name": "Get JSON model description",
+                "url": "/embedding/model_json",
+                "parameters": [
+                    {"label": "TSV folder to read from", "param_name": "tsv_folder_path"},
+                    {"label": "Output name of your model", "param_name": "model_name"},
+                ],
+            },
+            {
+                "name": "Get model summary",
+                "url": "/embedding/model_summary",
+                "parameters": [
+                    {"label": "TSV folder to read from", "param_name": "tsv_folder_path"},
+                    {"label": "Output name of your model", "param_name": "model_name"},
+                ],
+            },
+            {
+                "name": "Create a new embedding from words then return the top-10 nearest words",
+                "url": "/embedding/nem_embedding",
+                "parameters": [
+                    {"label": "TSV folder to read from", "param_name": "tsv_folder_path"},
+                    {"label": "Output name of your model", "param_name": "model_name"},
+                    {
+                        "label": "Words separated with a whitespace to be added for the new embedding",
+                        "param_name": "positive_words",
+                    },
+                    {
+                        "label": "Words separated with a whitespace to be subtracted for the new embedding",
+                        "param_name": "negative_words",
+                    },
+                ],
+            },
+        ],
+        # Add modularity here!TODO
     }
     return templates.TemplateResponse("welcome.html", context)
 
 
-@app.get("/health")
-async def health_check():
-    return {"status": "ok", "message": "API is running successfully."}
-
-
 @app.get("/embedding/get_corpus")
-async def get_corpus(request: Request):
+async def get_corpus(request: Request, tsv_folder_path: str = Query(description="Path to the TSV folder")):
+    if tsv_folder_path == "":
+        tsv_folder_path = "Pyrrha"
     # -----Preprocess-----
-    pyrrha_lemmatiseur = PyrrhaLemmatiseur(tsv_folder_path="data/Pyrrha")
+    pyrrha_lemmatiseur = PyrrhaLemmatiseur(tsv_folder_path=f"data/{tsv_folder_path}")
     pyrrha_lemmatiseur.obtain_corpus_lemma(output_file="raw_text_lemma")
     data = pyrrha_lemmatiseur.obtain_list_sequences(raw_text_lemma_file="raw_text_lemma")
     return {"corpus": data}
 
 
 @app.get("/embedding/fit")
-async def dashboard(request: Request):
-    pyrrha_lemmatiseur = PyrrhaLemmatiseur(tsv_folder_path="data/Pyrrha")
+async def dashboard(request: Request, tsv_folder_path: str = Query(description="Path to the TSV folder")):
+    if tsv_folder_path == "":
+        tsv_folder_path = "Pyrrha"
+    pyrrha_lemmatiseur = PyrrhaLemmatiseur(tsv_folder_path=f"data/{tsv_folder_path}")
     data = pyrrha_lemmatiseur.obtain_list_sequences(raw_text_lemma_file="raw_text_lemma")
     # -----Embedding-----
     embedding_factory = EmbeddingFactory(paragraphs=data)
@@ -146,18 +194,29 @@ async def dashboard(request: Request):
         X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test, model_name="test"
     )
     return {
+        "corpus_name": tsv_folder_path,
+        "nb_sequences": len(data),
+        "unique_labels": np.unique(labels).tolist(),
         "accuracy": embedding_factory.get_accuracy(X_test=X_test, y_test=y_test),
         "training_logs": logs,
     }
 
 
 @app.get("/embedding/model_json")
-async def get_model_json(request: Request):
-    if os.path.exists("data/models/test.keras"):
-        model = load_model("data/models/test.keras")
+async def get_model_json(
+    request: Request,
+    tsv_folder_path: str = Query(description="Path to the TSV folder"),
+    model_name: str = Query(description="Name of the keras model to load"),
+):
+    if tsv_folder_path == "":
+        tsv_folder_path = "Pyrrha"
+    if model_name == "":
+        model_name = "test"
+    if os.path.exists(f"data/models/{model_name}.keras"):
+        model = load_model(f"data/models/{model_name}.keras")
         model_json = model.to_json()
         return JSONResponse(content=model_json)
-    pyrrha_lemmatiseur = PyrrhaLemmatiseur(tsv_folder_path="data/Pyrrha")
+    pyrrha_lemmatiseur = PyrrhaLemmatiseur(tsv_folder_path=f"data/{tsv_folder_path}")
     data = pyrrha_lemmatiseur.obtain_list_sequences(raw_text_lemma_file="raw_text_lemma")
     # -----Embedding-----
     embedding_factory = EmbeddingFactory(paragraphs=data)
@@ -170,19 +229,27 @@ async def get_model_json(request: Request):
     embedding_factory.model = embedding_factory.define_lstm_model()
 
     embedding_factory.model, _ = embedding_factory.fit_model(
-        X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test, model_name="test"
+        X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test, model_name=model_name
     )
     model_json = embedding_factory.model.to_json()
     return JSONResponse(content=model_json)
 
 
 @app.get("/embedding/model_summary", response_class=HTMLResponse)
-async def model_summary(request: Request):
-    if os.path.exists("data/models/test.keras"):
-        model = load_model("data/models/test.keras")
+async def model_summary(
+    request: Request,
+    tsv_folder_path: str = Query(description="Path to the TSV folder"),
+    model_name: str = Query(description="Name of the keras model to load"),
+):
+    if tsv_folder_path == "":
+        tsv_folder_path = "Pyrrha"
+    if model_name == "":
+        model_name = "test"
+    if os.path.exists(f"data/models/{model_name}.keras"):
+        model = load_model(f"data/models/{model_name}.keras")
         summary = get_model_summary(model)
         return templates.TemplateResponse("summary.html", {"request": request, "summary": summary})
-    pyrrha_lemmatiseur = PyrrhaLemmatiseur(tsv_folder_path="data/Pyrrha")
+    pyrrha_lemmatiseur = PyrrhaLemmatiseur(tsv_folder_path=f"data/{tsv_folder_path}")
     data = pyrrha_lemmatiseur.obtain_list_sequences(raw_text_lemma_file="raw_text_lemma")
     # -----Embedding-----
     embedding_factory = EmbeddingFactory(paragraphs=data)
@@ -194,29 +261,55 @@ async def model_summary(request: Request):
     embedding_factory.model = embedding_factory.define_lstm_model()
 
     embedding_factory.model, _ = embedding_factory.fit_model(
-        X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test, model_name="test"
+        X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test, model_name=model_name
     )
     summary = get_model_summary(embedding_factory.model)
-    # return f"<pre>{summary}</pre>"
     return templates.TemplateResponse("summary.html", {"request": request, "summary": summary})
 
 
 @app.get("/embedding/nem_embedding")
-async def new_embedding(request: Request):
-    if os.path.exists("data/models/test.keras"):
-        model = load_model("data/models/test.keras")
+async def new_embedding(
+    request: Request,
+    tsv_folder_path: str = Query(description="Path to the TSV folder"),
+    model_name: str = Query(description="Name of the keras model to load"),
+    positive_words: str = Query(description="List of words to be added for the new embedding"),
+    negative_words: str = Query(description="List of words to be subtracted for the new embedding"),
+):
+    if positive_words == "" and negative_words == "":
+        positive_words = ["marcion", "cupiditas"]
+        negative_words = ["apocalypsis"]
+    else:
+        positive_words = positive_words.split()
+        negative_words = negative_words.split()
+
+    if not isinstance(positive_words, list) or not isinstance(negative_words, list):
+        return JSONResponse(
+            content={"error": "positive_words and negative_words should be lists of strings."},
+            status_code=400,
+        )
+
+    if tsv_folder_path == "":
+        tsv_folder_path = "Pyrrha"
+    if model_name == "":
+        model_name = "test"
+    if os.path.exists(f"data/models/{model_name}.keras"):
+        model = load_model(f"data/models/{model_name}.keras")
     else:
         raise FileNotFoundError("Model not found. Please train the model first.")
 
-    pyrrha_lemmatiseur = PyrrhaLemmatiseur(tsv_folder_path="data/Pyrrha")
+    pyrrha_lemmatiseur = PyrrhaLemmatiseur(tsv_folder_path=f"data/{tsv_folder_path}")
     data = pyrrha_lemmatiseur.obtain_list_sequences(raw_text_lemma_file="raw_text_lemma")
     # -----Embedding-----
     embedding_factory = EmbeddingFactory(paragraphs=data, model=model)
 
     new_embedding = embedding_factory.get_new_embedding(
-        positive_words=["marcion", "cupiditas"], negative_words=["apocalypsis"]
+        positive_words=positive_words, negative_words=negative_words
     )
     return {
+        "corpus_name": tsv_folder_path,
+        "model_name": model_name,
+        "positive_words": positive_words,
+        "negative_words": negative_words,
         "new_embedding": new_embedding.tolist(),
         "top_10words": embedding_factory.find_top_10_nearest_words(embedding=new_embedding),
     }
@@ -577,11 +670,3 @@ async def predict_author(
             },
         }
     )
-
-
-# Test ------------------------------------------
-
-
-@app.get("/custom_route", response_class=HTMLResponse)
-async def custom_route(request: Request, text: str = Query(None), option: str = Query(None)):
-    return templates.TemplateResponse("redirect.html", {"request": request, "text": text, "option": option})

@@ -112,15 +112,12 @@ class EmbeddingFactory:
         if self.model is None:
             raise ValueError("Model is not defined. Please call load_model() first.")
         scores = self.model.evaluate(X_test, y_test, verbose=0)
-        print(f"Accuracy: {scores[1] * 100:.2f}%")
         return scores[1]
 
     def get_word_at_index(self, index: int) -> str:
         # Get the word_index dictionary
         word_index = self.tokenizer.word_index
         word_at_index = next(word for word, index in word_index.items() if index == index)
-
-        print(f"The word at index {index} is: {word_at_index}")
         return word_at_index
 
     def extract_closest_word(self, word):
