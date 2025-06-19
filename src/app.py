@@ -50,40 +50,6 @@ async def welcome_page(request: Request):
             {"name": "Go to Route Text Annotation Section", "url": "/text_annotation"},
             {"name": "Go to Route Author Classification", "url": "/author_classification"},
         ],
-        # Working
-        # "form_routes": [
-        #     {
-        #         "name": "Go to predict_author",
-        #         "url": "/author_classification/predict_author/",
-        #         "parameters": [
-        #             {"label": "Classifier Type", "param_name": "clf_type"},
-        #             {"label": "Text on which we want a predicted author", "param_name": "text_to_predict"},
-        #         ],
-        #     },
-        # ],
-        # Fail
-        # "form_routes": [
-        #     {
-        #         "name": "Go to predict_author",
-        #         "url": "/author_classification/predict_author/",
-        #         "parameters": [
-        #             {
-        #                 "label": "Classifier Type",
-        #                 "param_name": "clf_type",
-        #                 "type": "select",
-        #                 "choices": ["SVM", "LinearSVC"],
-        #             },
-        #             {"label": "Other Param", "param_name": "option", "type": "text"},
-        #         ],
-        #     },
-        #     {
-        #         "name": "Embedding Route",
-        #         "url": "/embedding",
-        #         "parameters": [
-        #             {"label": "Text to embed", "param_name": "text", "type": "text"},
-        #         ],
-        #     },
-        # ],
     }
     return templates.TemplateResponse("welcome.html", context)
 
@@ -205,9 +171,19 @@ async def embedding_page(request: Request):
 
 
 @app.get("/embedding/get_corpus")
-async def get_corpus(request: Request, tsv_folder_path: str = Query(description="Path to the TSV folder")):
-    if tsv_folder_path == "":
-        tsv_folder_path = "Pyrrha"
+async def get_corpus(tsv_folder_path: str = Query(description="Path to the TSV folder")) -> dict:
+    """Asynchronously retrieves and processes a corpus from a specified TSV folder path.
+
+    Args:
+        tsv_folder_path (str): Path to the folder containing TSV files. Defaults to "Pyrrha"
+            if an empty string is provided.
+
+    Returns:
+        dict: A dictionary containing the processed corpus data under the key "corpus".
+
+    Raises:
+        ValueError: If the provided folder path is invalid or processing fails.
+    """
     # -----Preprocess-----
     pyrrha_lemmatiseur = PyrrhaLemmatiseur(tsv_folder_path=f"data/{tsv_folder_path}")
     pyrrha_lemmatiseur.obtain_corpus_lemma(output_file="raw_text_lemma")
@@ -216,9 +192,27 @@ async def get_corpus(request: Request, tsv_folder_path: str = Query(description=
 
 
 @app.get("/embedding/fit")
-async def dashboard(request: Request, tsv_folder_path: str = Query(description="Path to the TSV folder")):
-    if tsv_folder_path == "":
-        tsv_folder_path = "Pyrrha"
+async def dashboard(tsv_folder_path: str = Query(description="Path to the TSV folder")):
+    """
+    Asynchronous function to fit an LSTM model on a corpus obtained from a specified TSV folder path.
+
+    Args:
+        tsv_folder_path (str): Path to the folder containing TSV files. This is used to initialize the PyrrhaLemmatiseur
+            with the specified folder path.
+
+    Returns:
+        dict: A dictionary containing the following keys:
+            - "corpus_name" (str): Name of the corpus (folder path provided).
+            - "nb_sequences" (int): Number of sequences processed from the data.
+            - "unique_labels" (list): List of unique labels identified in the data.
+            - "accuracy" (float): Accuracy of the trained model on the test dataset.
+            - "training_logs" (dict): Logs from the model training process.
+
+    Raises:
+        ValueError: If the provided folder path is invalid or the data cannot be processed.
+        Exception: For any unexpected errors during the embedding or model training process.
+    """
+
     pyrrha_lemmatiseur = PyrrhaLemmatiseur(tsv_folder_path=f"data/{tsv_folder_path}")
     data = pyrrha_lemmatiseur.obtain_list_sequences(raw_text_lemma_file="raw_text_lemma")
     # -----Embedding-----
@@ -244,14 +238,20 @@ async def dashboard(request: Request, tsv_folder_path: str = Query(description="
 
 @app.get("/embedding/model_json")
 async def get_model_json(
-    request: Request,
     tsv_folder_path: str = Query(description="Path to the TSV folder"),
     model_name: str = Query(description="Name of the keras model to load"),
-):
-    if tsv_folder_path == "":
-        tsv_folder_path = "Pyrrha"
-    if model_name == "":
-        model_name = "test"
+) -> JSONResponse:
+    """Asynchronously retrieves the JSON representation of a trained LSTM model.
+
+    Args:
+        tsv_folder_path (str): Path to the folder containing TSV files. Defaults to "Pyrrha"
+            if an empty string is provided.
+        model_name (str): Name of the keras model to load. Defaults to "test" if an empty string is provided.
+
+    Returns:
+        JSONResponse: A JSON response containing the model's architecture in JSON format.
+    """
+
     if os.path.exists(f"data/models/{model_name}.keras"):
         model = load_model(f"data/models/{model_name}.keras")
         model_json = model.to_json()
@@ -280,11 +280,16 @@ async def model_summary(
     request: Request,
     tsv_folder_path: str = Query(description="Path to the TSV folder"),
     model_name: str = Query(description="Name of the keras model to load"),
-):
-    if tsv_folder_path == "":
-        tsv_folder_path = "Pyrrha"
-    if model_name == "":
-        model_name = "test"
+) -> HTMLResponse:
+    """Asynchronously retrieves and displays the summary of a trained LSTM model.
+    Args:
+        request (Request): The FastAPI request object.
+        tsv_folder_path (str): Path to the folder containing TSV files. Defaults to "Pyrrha"
+            if an empty string is provided.
+        model_name (str): Name of the keras model to load. Defaults to "test" if an empty string is provided.
+    Returns:
+        HTMLResponse: An HTML response containing the model summary.
+    """
     if os.path.exists(f"data/models/{model_name}.keras"):
         model = load_model(f"data/models/{model_name}.keras")
         summary = get_model_summary(model)
@@ -309,12 +314,25 @@ async def model_summary(
 
 @app.get("/embedding/nem_embedding")
 async def new_embedding(
-    request: Request,
     tsv_folder_path: str = Query(description="Path to the TSV folder"),
     model_name: str = Query(description="Name of the keras model to load"),
     positive_words: str = Query(description="List of words to be added for the new embedding"),
     negative_words: str = Query(description="List of words to be subtracted for the new embedding"),
-):
+) -> dict:
+    """Asynchronously creates a new embedding based on provided positive and negative words, using a pre-trained LSTM model.
+
+    Args:
+        tsv_folder_path (str): Path to the folder containing TSV files. Defaults to "Pyrrha" if an empty string is provided.
+        model_name (str): Name of the keras model to load. Defaults to "test" if an empty string is provided.
+        positive_words (str): Words separated by whitespace to be added for the new embedding.
+        negative_words (str): Words separated by whitespace to be subtracted for the new embedding.
+    Returns:
+        dict: A dictionary containing the new embedding, corpus name, model name, positive words, negative words,
+              and the top 10 nearest words to the new embedding.
+    Raises:
+        JSONResponse: If the positive_words or negative_words are not lists of strings.
+        FileNotFoundError: If the specified model file does not exist.
+    """
     if positive_words == "" and negative_words == "":
         positive_words = ["marcion", "cupiditas"]
         negative_words = ["apocalypsis"]
@@ -327,11 +345,6 @@ async def new_embedding(
             content={"error": "positive_words and negative_words should be lists of strings."},
             status_code=400,
         )
-
-    if tsv_folder_path == "":
-        tsv_folder_path = "Pyrrha"
-    if model_name == "":
-        model_name = "test"
     if os.path.exists(f"data/models/{model_name}.keras"):
         model = load_model(f"data/models/{model_name}.keras")
     else:
@@ -361,7 +374,15 @@ async def new_embedding(
 
 
 @app.get("/text_annotation", response_class=HTMLResponse)
-async def text_annotation_page(request: Request):
+async def text_annotation_page(request: Request) -> HTMLResponse:
+    """
+    Asynchronously renders the text annotation page with various functionalities.
+    Args:
+        request (Request): The FastAPI request object.
+    Returns:
+        HTMLResponse: An HTML response containing the text annotation page with various functionalities.
+    """
+
     context = {
         "request": request,
         "title": "Explore Tertullien like never before",
@@ -447,9 +468,19 @@ async def text_annotation_page(request: Request):
 
 
 @app.get("/text_annotation/xml", response_class=Response)
-async def get_xml(xml_path: str = Query(description="Path to the XML file")):
-    if xml_path == "":
-        xml_path = "Pall2.xml"
+async def get_xml(xml_path: str = Query(description="Path to the XML file")) -> Response:
+    """
+    Asynchronously retrieves the content of a specified XML file.
+
+    Args:
+        xml_path (str): Path to the XML file.".
+
+    Returns:
+        Response: A FastAPI Response object containing the XML file content.
+
+    Raises:
+        Response: If the specified XML file does not exist, a 404 response is returned with an error message.
+    """
     xml_path = Path(f"./data/xml/{xml_path}")
     if not xml_path.exists():
         return Response(
@@ -462,17 +493,32 @@ async def get_xml(xml_path: str = Query(description="Path to the XML file")):
 
 
 @app.get("/text_annotation/get_annotations_categories")
-async def get_annotations_categories(
-    request: Request,
-):
+async def get_annotations_categories() -> JSONResponse:
+    """
+    Asynchronously retrieves all available annotation categories.
+
+    Returns:
+        JSONResponse: A JSON response containing all available annotation categories.
+    """
     annotations_categories = get_all_annotations_categories()
     return JSONResponse(content=annotations_categories)
 
 
 @app.get("/text_annotation/xml_to_html", response_class=HTMLResponse)
-async def xml_to_html(request: Request, xml_path: str = Query(description="Path to the XML file")):
-    if xml_path == "":
-        xml_path = "Pall2.xml"
+async def xml_to_html(
+    request: Request, xml_path: str = Query(description="Path to the XML file")
+) -> HTMLResponse:
+    """
+    Asynchronously converts a specified XML file to an interactive HTML representation.
+    Args:
+        request (Request): The FastAPI request object.
+        xml_path (str): Path to the XML file.
+    Returns:
+        HTMLResponse: An HTML response containing the interactive representation of the XML file.
+    Raises:
+        Response: If the specified XML file does not exist, a 404 response is returned with an error message.
+    """
+
     xml_path = Path(f"./data/xml/{xml_path}")
     if not xml_path.exists():
         return Response(
@@ -486,12 +532,24 @@ async def xml_to_html(request: Request, xml_path: str = Query(description="Path 
 
 @app.get("/text_annotation/get_annotation")
 async def get_annotation(
-    request: Request,
     xml_path: str = Query(description="Path to the XML file"),
     annotation: str = Query(description="Which figure of speech to select"),
-):
-    if xml_path == "":
-        xml_path = "Pall2.xml"
+) -> JSONResponse:
+    """
+    Asynchronously retrieves all or specific annotations from a specified XML file.
+
+    Args:
+        xml_path (str): Path to the XML file.
+        annotation (str): Specific figure of speech to select. If empty, all annotations are returned.
+
+    Returns:
+        JSONResponse: A JSON response containing the annotations from the XML file.
+
+    Raises:
+        Response: If the specified XML file does not exist, a 404 response is returned with an error message.
+        Response: If the specified annotation is not found in the XML file, a 404 response is returned with an error message.
+    """
+
     xml_path = Path(f"./data/xml/{xml_path}")
     if not xml_path.exists():
         return Response(
@@ -517,7 +575,17 @@ async def get_annotation(
 
 
 @app.get("/author_classification", response_class=HTMLResponse)
-async def author_classification(request: Request):
+async def author_classification(request: Request) -> HTMLResponse:
+    """
+    Asynchronously renders the author classification page with various functionalities.
+
+    Args:
+        request (Request): The FastAPI request object.
+
+    Returns:
+        HTMLResponse: An HTML response containing the author classification page with various functionalities.
+    """
+
     context = {
         "request": request,
         "title": "Explore Tertullien like never before",
@@ -580,7 +648,13 @@ async def author_classification(request: Request):
 
 
 @app.get("/author_classification/get_stopwords")
-async def get_stopwords(request: Request):
+async def get_stopwords() -> JSONResponse:
+    """
+    Asynchronously retrieves the list of stop words used in the author classification dataset.
+
+    Returns:
+        JSONResponse: A JSON response containing the number of stop words and the list of stop words.
+    """
     dataset_factory = DatasetFactory()
     stop_words = dataset_factory.stop_words
     return JSONResponse(
@@ -592,7 +666,19 @@ async def get_stopwords(request: Request):
 
 
 @app.get("/author_classification/get_clean_author_text")
-async def get_clean_author_text(author: str = Query(description="Author name")):
+async def get_clean_author_text(author: str = Query(description="Author name")) -> JSONResponse:
+    """
+    Asynchronously retrieves the clean text of a specified author.
+    Args:
+        author (str): Name of the author whose clean text is to be retrieved. If empty, all authors' texts are returned.
+
+    Returns:
+        JSONResponse: A JSON response containing the clean text of the specified author or all authors' texts.
+
+    Raises:
+        JSONResponse: If the author is not recognized, a 404 response is returned with an error message.
+    """
+
     dataset_factory = DatasetFactory()
     print(f"Author requested: {author}")
     if author == "":
@@ -632,7 +718,12 @@ async def get_clean_author_text(author: str = Query(description="Author name")):
 
 
 @app.get("/author_classification/get_wordcloud")
-async def get_wordcloud(request: Request):
+async def get_wordcloud() -> JSONResponse:
+    """Asynchronously creates word clouds for each author in the dataset.
+    Returns:
+        JSONResponse: A JSON response indicating that word clouds have been created for each author.
+    """
+
     dataset_factory = DatasetFactory()
     dataset_factory.create_wordcloud(text=dataset_factory.text_apu, title="Wordcloud of Apulée")
     dataset_factory.create_wordcloud(text=dataset_factory.text_ciceron, title="Wordcloud of Cicéron")
@@ -646,12 +737,27 @@ async def get_wordcloud(request: Request):
 
 
 @app.get("/author_classification/plot_wordclouds")
-async def plot_wordclouds(request: Request):
+async def plot_wordclouds(request: Request) -> HTMLResponse:
+    """
+    Asynchronously renders the word clouds for each author in the dataset.
+    Args:
+        request (Request): The FastAPI request object.
+    Returns:
+        HTMLResponse: An HTML response containing the rendered word clouds for each author.
+    """
+
     return templates.TemplateResponse("display_wordclouds.html", {"request": request})
 
 
 @app.get("/author_classification/get_df")
-async def get_df(request: Request):
+async def get_df() -> JSONResponse:
+    """
+    Asynchronously retrieves the DataFrame dataset used for author classification.
+
+    Returns:
+        JSONResponse: A JSON response containing the DataFrame dataset as a list of records.
+    """
+
     dataset_factory = DatasetFactory()
     df = dataset_factory.get_dataframe_dataset()
     df, le = dataset_factory.encode_variable(df)
@@ -659,12 +765,16 @@ async def get_df(request: Request):
 
 
 @app.get("/author_classification/get_labels_classes")
-async def get_labels_classes(request: Request):
+async def get_labels_classes() -> JSONResponse:
+    """
+    Asynchronously retrieves the label classes used in the author classification dataset.
+    Returns:
+        JSONResponse: A JSON response containing the label classes.
+    """
+
     dataset_factory = DatasetFactory()
     df = dataset_factory.get_dataframe_dataset()
     df, le = dataset_factory.encode_variable(df)
-    print(df[98:110].head())
-    print(dataset_factory.get_labels_classes(le))
     X_train, X_test, y_train, y_test = dataset_factory.split_train_test(df)
     label_to_author = dataset_factory.get_label_to_author(le=le, y_train=y_train)
     label_to_author = {int(k): v for k, v in label_to_author.items()}
@@ -672,7 +782,14 @@ async def get_labels_classes(request: Request):
 
 
 @app.get("/author_classification/get_author_repartition")
-async def get_author_repartition(request: Request):
+async def get_author_repartition() -> JSONResponse:
+    """
+    Asynchronously retrieves the proportion of each author in the training and testing datasets.
+
+    Returns:
+        JSONResponse: A JSON response containing the proportion of each author in the training and testing datasets.
+    """
+
     dataset_factory = DatasetFactory()
     df = dataset_factory.get_dataframe_dataset()
     df, le = dataset_factory.encode_variable(df)
@@ -682,17 +799,33 @@ async def get_author_repartition(request: Request):
 
 
 @app.get("/author_classification/plot_top_words")
-async def plot_top_words(request: Request):
+async def plot_top_words(request: Request) -> HTMLResponse:
+    """
+    Asynchronously renders the top words for each author in the dataset.
+
+    Args:
+        request (Request): The FastAPI request object.
+    Returns:
+        HTMLResponse: An HTML response containing the rendered top words for each author.
+    """
+
     return templates.TemplateResponse("display.html", {"request": request})
 
 
 @app.get("/author_classification/get_accuracy")
 async def get_accuracy(
-    request: Request,
-    clf_type: str = Query(description="Type of classifier to use (e.g., LinearSVC, SVM)"),
-):
-    if clf_type == "":
-        clf_type = "LinearSVC"
+    clf_type: str = Query(description="Type of classifier to use (LinearSVC, SVC)"),
+) -> JSONResponse:
+    """
+    Asynchronously retrieves the accuracy of various classifiers on the author classification dataset.
+
+    Args:
+        clf_type (str): Type of classifier to use. Defaults to "LinearSVC" if an empty string is provided.
+
+    Returns:
+        JSONResponse: A JSON response containing the mean test scores of different classifiers.
+    """
+
     dataset_factory = DatasetFactory(clf_type=clf_type)
     df = dataset_factory.get_dataframe_dataset()
     df, le = dataset_factory.encode_variable(df)
@@ -737,11 +870,16 @@ async def get_accuracy(
 async def predict_author(
     clf_type: str = Query(description="Type of classifier to use (e.g., LinearSVC, SVM)"),
     text_to_predict: str = Query(description="Text to predict author for"),
-):
-    if text_to_predict == "":
-        text_to_predict = "Quid bene amat bene castigat"
-    if clf_type == "":
-        clf_type = "LinearSVC"
+) -> JSONResponse:
+    """
+    Asynchronously predicts the author of a given text using various classifiers.
+    Args:
+        clf_type (str): Type of classifier to use. Defaults to "LinearSVC" if an empty string is provided.
+        text_to_predict (str): Text on which to predict the author.
+    Returns:
+        JSONResponse: A JSON response containing the predictions and probabilities for each classifier.
+    """
+
     dataset_factory = DatasetFactory(clf_type=clf_type)
     df = dataset_factory.get_dataframe_dataset()
     df, le = dataset_factory.encode_variable(df)

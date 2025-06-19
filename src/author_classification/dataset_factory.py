@@ -22,7 +22,6 @@ class DatasetFactory:
             raise ValueError("clf_type must be 'SVM' or 'LinearSVC'")
         with open("data/Stopwords_latin.txt", "r", encoding="utf-8") as stop_words_file:
             self.stop_words = stop_words_file.read().splitlines()
-        print(f"Stop words loaded: {len(self.stop_words)}")
         self.text_apu = self.get_text_and_clean("data/author_classification/Apuleius_Flo.txt")
         self.text_ciceron = self.get_text_and_clean("data/author_classification/Cic_Pro_Milone.txt")
         self.text_de_pallio = self.get_text_and_clean("data/author_classification/De_Pallio.txt")
@@ -36,6 +35,15 @@ class DatasetFactory:
             self.clf = CalibratedClassifierCV(base_clf)
 
     def get_text_and_clean(self, text_path: str) -> list[str]:
+        """
+        Reads a text file, removes punctuation, converts to lowercase,
+        removes digits, tokenizes the text, and removes stop words.
+        Args:
+            text_path (str): The path to the text file to be processed.
+        Returns:
+            str: The cleaned text as a single string.
+        """
+
         with open(text_path, "r", encoding="utf-8") as file:
             text = file.read()
 
@@ -84,7 +92,14 @@ class DatasetFactory:
             f"./plot/{title.replace(' ', '_')}.png", dpi=300
         )  # Save with higher DPI for better quality
 
-    def get_dataframe_dataset(self):
+    def get_dataframe_dataset(self) -> pd.DataFrame:
+        """
+        Creates a DataFrame containing text excerpts from different authors.
+        Each excerpt is wrapped to ensure it fits within a specified number of sequences.
+
+        Returns:
+            pd.DataFrame: A DataFrame with two columns: 'text' and 'author'.
+        """
 
         # On crée des listes contenant des extraits de texte
         phrases_apu = wrap(self.text_apu, len(self.text_apu) // self.nb_sequences)
@@ -103,8 +118,14 @@ class DatasetFactory:
 
     def encode_variable(self, df: pd.DataFrame) -> pd.Series:
         """
-        Encode a categorical variable into numerical values.
+        Encode the 'author' column in the DataFrame using Label Encoding.
+        Args:
+            df (pd.DataFrame): The DataFrame containing the 'author' column.
+        Returns:
+            pd.DataFrame: The DataFrame with an additional 'author_encoded' column.
+            LabelEncoder: The fitted LabelEncoder instance.
         """
+
         le = LabelEncoder()
         df["author_encoded"] = le.fit_transform(df["author"])
         return df, le
@@ -113,6 +134,15 @@ class DatasetFactory:
         return le.classes_
 
     def split_train_test(self, df: pd.DataFrame, test_size: float = 0.2) -> tuple:
+        """
+        Split the DataFrame into training and testing sets.
+        Args:
+            df (pd.DataFrame): The DataFrame to split.
+            test_size (float): The proportion of the dataset to include in the test split.
+        Returns:
+            tuple: A tuple containing the training and testing sets for both features and labels.
+        """
+
         X_train, X_test, y_train, y_test = train_test_split(
             df["text"].values,
             df["author_encoded"].values,
@@ -123,10 +153,29 @@ class DatasetFactory:
         return X_train, X_test, y_train, y_test
 
     def get_label_to_author(self, le: LabelEncoder, y_train: np.array) -> dict:
+        """
+        Create a mapping from encoded labels to author names.
+        Args:
+            le (LabelEncoder): The fitted LabelEncoder instance.
+            y_train (np.ndarray): The training labels.
+        Returns:
+            dict: A dictionary mapping encoded labels to author names.
+        """
+
         label_to_author = {y_train[i]: le.inverse_transform([y_train[i]])[0] for i in range(len(y_train))}
         return label_to_author
 
     def get_proportion_label_in_sets(self, y_train: np.ndarray, y_test: np.ndarray, le: LabelEncoder) -> dict:
+        """
+        Calculate the proportion of each author in the training and testing sets.
+        Args:
+            y_train (np.ndarray): The training labels.
+            y_test (np.ndarray): The testing labels.
+            le (LabelEncoder): The fitted LabelEncoder instance.
+        Returns:
+            dict: A dictionary containing the proportion of each author in both training and testing sets.
+        """
+
         unique_labels = np.unique(np.concatenate([y_train, y_test]))
         proportion_author = {
             le.inverse_transform([label])[0]: {

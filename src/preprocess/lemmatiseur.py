@@ -15,6 +15,14 @@ class PyrrhaLemmatiseur:
             self.stop_words = stop_words_file.read().splitlines()
 
     def obtain_corpus_lemma(self, output_file: str) -> str:
+        """
+        Reads TSV files from the specified folder, concatenates the text, and writes it to an output file.
+        Args:
+            output_file (str): The name of the output file where the concatenated text will be saved.
+        Returns:
+            str: The path to the output file.
+        """
+
         for filename in sorted(os.listdir(self.tsv_folder_path)):
             if filename.endswith(".tsv"):
                 file_path = os.path.join(self.tsv_folder_path, filename)
@@ -44,6 +52,15 @@ class PyrrhaLemmatiseur:
             output_file.write(self.text + "\n")
 
     def obtain_list_sequences(self, raw_text_lemma_file: str) -> list[list[str]]:
+        """
+        Reads the raw text lemma file, processes it to remove punctuation, convert to lowercase,
+        remove digits, and stop words, and returns a list of lists containing the cleaned words.
+        Args:
+            raw_text_lemma_file (str): The name of the raw text lemma file without extension.
+        Returns:
+            list[list[str]]: A list of lists, where each inner list contains cleaned words from the text.
+        """
+
         paragraphs = []
         with open(
             os.path.join(self.folder_output, f"{raw_text_lemma_file}.txt"), "r", encoding="utf-8"

@@ -33,6 +33,14 @@ ANNOTATIONS = {
 
 
 def get_model_summary(model: Model) -> str:
+    """
+    Generates a summary of the Keras model.
+    Args:
+        model (Model): A Keras model instance.
+    Returns:
+        str: A string representation of the model summary.
+    """
+
     stream = StringIO()
     model.summary(print_fn=lambda x: stream.write(x + "\n"))
     summary_str = stream.getvalue()
@@ -40,7 +48,15 @@ def get_model_summary(model: Model) -> str:
     return summary_str
 
 
-def parse_tei(xml_path):
+def parse_tei(xml_path: str) -> dict:
+    """
+    Parses a TEI XML file and extracts the title and body as HTML.
+    Args:
+        xml_path (str): The file path to the TEI XML file.
+    Returns:
+        dict: A dictionary containing the title and body as HTML.
+    """
+
     tree = etree.parse(xml_path)
     root = tree.getroot()
 
@@ -53,7 +69,17 @@ def parse_tei(xml_path):
     return {"title": root.findtext(".//{http://www.tei-c.org/ns/1.0}title"), "body_html": body_html}
 
 
-def parse_full_tei(xml_path: str):
+def parse_full_tei(xml_path: str) -> dict:
+    """
+    Parses a TEI XML file and extracts metadata, witness information, and text body.
+
+    Args:
+        xml_path (str): The file path to the TEI XML file.
+
+    Returns:
+        dict: A dictionary containing the parsed metadata, witness information, and text body.
+    """
+
     tree = etree.parse(Path(xml_path))
     root = tree.getroot()
 
@@ -138,6 +164,16 @@ def parse_full_tei(xml_path: str):
 
 
 def add_title_to_spans(html_string: str) -> str:
+    """
+    Adds a title attribute to all <span> elements with an 'ana' attribute in the provided HTML string.
+
+    Args:
+        html_string (str): The HTML string to process.
+
+    Returns:
+        str: The modified HTML string with title attributes added to <span> elements.
+    """
+
     # Parse the HTML string into an lxml tree
     tree = html.fromstring(html_string)
 
@@ -152,7 +188,18 @@ def add_title_to_spans(html_string: str) -> str:
     return html.tostring(tree, encoding="unicode", method="html")
 
 
-def get_all_annotations(xml_path: str):
+def get_all_annotations(xml_path: str) -> dict:
+    """
+    Extracts annotations from an XML file and organizes them into a structured dictionary.
+
+    Args:
+        xml_path (str): The file path to the XML file containing annotations.
+
+    Returns:
+        dict: A dictionary where keys are annotation types and values are dictionaries
+              containing chapter headers as keys and lists of annotation contents as values.
+    """
+
     xmlstr = ET.parse(xml_path)
     root = xmlstr.getroot()
     new_root = root[1][0]
@@ -174,5 +221,11 @@ def get_all_annotations(xml_path: str):
     return annotations_copy
 
 
-def get_all_annotations_categories():
+def get_all_annotations_categories() -> list:
+    """
+    Returns a list of all annotation categories defined in the ANNOTATIONS dictionary.
+
+    Returns:
+        list: A list of annotation category names.
+    """
     return list(ANNOTATIONS.keys())
