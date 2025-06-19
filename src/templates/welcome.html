@@ -36,8 +36,19 @@
         <h3>{{ form.name }}</h3>
 
         {% for param in form.parameters %}
+            {% set param_type = param.type if param.type is defined else 'text' %}
+
             <label>{{ param.label }}:</label>
-            <input type="text" id="{{ param.param_name }}_{{ form_index }}">
+
+            {% if param_type == 'select' %}
+                <select id="{{ param.param_name }}_{{ form_index }}">
+                    {% for option in param.options %}
+                        <option value="{{ option }}">{{ option }}</option>
+                    {% endfor %}
+                </select>
+            {% else %}
+                <input type="text" id="{{ param.param_name }}_{{ form_index }}">
+            {% endif %}
             <br/>
         {% endfor %}
 

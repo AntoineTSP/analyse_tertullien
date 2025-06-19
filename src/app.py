@@ -116,38 +116,78 @@ async def embedding_page(request: Request):
                 "name": "Get corpus from tsv",
                 "url": "/embedding/get_corpus",
                 "parameters": [
-                    {"label": "TSV folder to read from", "param_name": "tsv_folder_path"},
+                    {
+                        "label": "TSV folder to read from",
+                        "param_name": "tsv_folder_path",
+                        "type": "select",
+                        "options": ["Pyrrha"],
+                    },
                 ],
             },
             {
                 "name": "Fit a LSTM model",
                 "url": "/embedding/fit",
                 "parameters": [
-                    {"label": "TSV folder to read from", "param_name": "tsv_folder_path"},
+                    {
+                        "label": "TSV folder to read from",
+                        "param_name": "tsv_folder_path",
+                        "type": "select",
+                        "options": ["Pyrrha"],
+                    },
                 ],
             },
             {
                 "name": "Get JSON model description",
                 "url": "/embedding/model_json",
                 "parameters": [
-                    {"label": "TSV folder to read from", "param_name": "tsv_folder_path"},
-                    {"label": "Output name of your model", "param_name": "model_name"},
+                    {
+                        "label": "TSV folder to read from",
+                        "param_name": "tsv_folder_path",
+                        "type": "select",
+                        "options": ["Pyrrha"],
+                    },
+                    {
+                        "label": "Output name of your model",
+                        "param_name": "model_name",
+                        "type": "select",
+                        "options": ["test"],
+                    },
                 ],
             },
             {
                 "name": "Get model summary",
                 "url": "/embedding/model_summary",
                 "parameters": [
-                    {"label": "TSV folder to read from", "param_name": "tsv_folder_path"},
-                    {"label": "Output name of your model", "param_name": "model_name"},
+                    {
+                        "label": "TSV folder to read from",
+                        "param_name": "tsv_folder_path",
+                        "type": "select",
+                        "options": ["Pyrrha"],
+                    },
+                    {
+                        "label": "Output name of your model",
+                        "param_name": "model_name",
+                        "type": "select",
+                        "options": ["test"],
+                    },
                 ],
             },
             {
                 "name": "Create a new embedding from words then return the top-10 nearest words",
                 "url": "/embedding/nem_embedding",
                 "parameters": [
-                    {"label": "TSV folder to read from", "param_name": "tsv_folder_path"},
-                    {"label": "Output name of your model", "param_name": "model_name"},
+                    {
+                        "label": "TSV folder to read from",
+                        "param_name": "tsv_folder_path",
+                        "type": "select",
+                        "options": ["Pyrrha"],
+                    },
+                    {
+                        "label": "Output name of your model",
+                        "param_name": "model_name",
+                        "type": "select",
+                        "options": ["test"],
+                    },
                     {
                         "label": "Words separated with a whitespace to be added for the new embedding",
                         "param_name": "positive_words",
@@ -342,22 +382,63 @@ async def text_annotation_page(request: Request):
                 "name": "Get the XML of a text",
                 "url": "/text_annotation/xml/",
                 "parameters": [
-                    {"label": "XML file to be displayed", "param_name": "xml_path"},
+                    {
+                        "label": "XML file to be displayed",
+                        "param_name": "xml_path",
+                        "type": "select",
+                        "options": ["Idol.xml", "Pall2.xml", "Mart2.xml", "Cult2.xml", "Val_2.xml"],
+                    },
                 ],
             },
             {
                 "name": "Get the Interactive HTML of a XML",
                 "url": "/text_annotation/xml_to_html/",
                 "parameters": [
-                    {"label": "XML file to be displayed", "param_name": "xml_path"},
+                    {
+                        "label": "XML file to be displayed",
+                        "param_name": "xml_path",
+                        "type": "select",
+                        "options": ["Idol.xml", "Pall2.xml", "Mart2.xml", "Cult2.xml", "Val_2.xml"],
+                    },
                 ],
             },
             {
                 "name": "Retrieve all/some figure of speech annotations on the provided XML",
                 "url": "/text_annotation/get_annotation/",
                 "parameters": [
-                    {"label": "XML file to be displayed", "param_name": "xml_path"},
-                    {"label": "Figure of speech to select", "param_name": "annotation"},
+                    {
+                        "label": "XML file to be displayed",
+                        "param_name": "xml_path",
+                        "type": "select",
+                        "options": ["Idol.xml", "Pall2.xml", "Mart2.xml", "Cult2.xml", "Val_2.xml"],
+                    },
+                    {
+                        "label": "Figure of speech to select",
+                        "param_name": "annotation",
+                        "type": "select",
+                        "options": [
+                            "",
+                            "metaphore",
+                            "comparaison",
+                            "personnification",
+                            "enargeia",
+                            "dialogisme",
+                            "deductio_ad_absurdum",
+                            "symbolisme",
+                            "exemple",
+                            "militaire",
+                            "retorsion_inversée",
+                            "irreel",
+                            "epiphoneme",
+                            "ab_absurdo",
+                            "ab_origine",
+                            "calembour",
+                            "dicton",
+                            "prosopopeia",
+                            "scene",
+                            "corps",
+                        ],
+                    },
                 ],
             },
         ],
@@ -448,7 +529,6 @@ async def author_classification(request: Request):
         "buttons": [
             {"name": "Go to Welcome page", "url": "/"},
             {"name": "Get Stopwords", "url": "/author_classification/get_stopwords"},
-            {"name": "Get Author Clean Text", "url": "/author_classification/get_clean_author_text"},
             # {"name": "Get Wordcloud", "url": "/author_classification/get_wordcloud"},
             {"name": "Plot Wordcloud", "url": "/author_classification/plot_wordclouds"},
             {"name": "Get Dataframe", "url": "/author_classification/get_df"},
@@ -458,17 +538,39 @@ async def author_classification(request: Request):
         ],
         "form_routes": [
             {
+                "name": "Get Author Clean Text",
+                "url": "/author_classification/get_clean_author_text",
+                "parameters": [
+                    {
+                        "label": "Which author text to retrieve",
+                        "param_name": "author",
+                        "type": "select",
+                        "options": ["", "Apulée", "Cicéron", "De Pallio", "Apologeticum"],
+                    },
+                ],
+            },
+            {
                 "name": "Get Accuracy for each model",
                 "url": "/author_classification/get_accuracy",
                 "parameters": [
-                    {"label": "Classifier Type", "param_name": "clf_type"},
+                    {
+                        "label": "Classifier Type",
+                        "param_name": "clf_type",
+                        "type": "select",
+                        "options": ["LinearSVC", "SVC"],
+                    },
                 ],
             },
             {
                 "name": "Go to predict_author",
                 "url": "/author_classification/predict_author/",
                 "parameters": [
-                    {"label": "Classifier Type", "param_name": "clf_type"},
+                    {
+                        "label": "Classifier Type",
+                        "param_name": "clf_type",
+                        "type": "select",
+                        "options": ["LinearSVC", "SVC"],
+                    },
                     {"label": "Text on which we want a predicted author", "param_name": "text_to_predict"},
                 ],
             },
@@ -490,16 +592,43 @@ async def get_stopwords(request: Request):
 
 
 @app.get("/author_classification/get_clean_author_text")
-async def get_clean_author_text(request: Request):
+async def get_clean_author_text(author: str = Query(description="Author name")):
     dataset_factory = DatasetFactory()
-    return JSONResponse(
-        content={
-            "Text Apulée": dataset_factory.text_apu,
-            "Text Cicéron": dataset_factory.text_ciceron,
-            "Text De Pallio": dataset_factory.text_de_pallio,
-            "Text Apologeticum": dataset_factory.text_apol,
-        }
-    )
+    print(f"Author requested: {author}")
+    if author == "":
+        return JSONResponse(
+            content={
+                "Text Apulée": dataset_factory.text_apu,
+                "Text Cicéron": dataset_factory.text_ciceron,
+                "Text De Pallio": dataset_factory.text_de_pallio,
+                "Text Apologeticum": dataset_factory.text_apol,
+            }
+        )
+    elif author in ["Apulée", "Cicéron", "De Pallio", "Apologeticum"]:
+        if author == "Apulée":
+            text = dataset_factory.text_apu
+        elif author == "Cicéron":
+            text = dataset_factory.text_ciceron
+        elif author == "De Pallio":
+            text = dataset_factory.text_de_pallio
+        elif author == "Apologeticum":
+            text = dataset_factory.text_apol
+        else:
+            return JSONResponse(
+                content={"error": f"Author {author} not recognized."},
+                status_code=404,
+            )
+        return JSONResponse(content={"Author": author, "Text": text})
+    else:
+        return JSONResponse(
+            content={
+                "error": (
+                    f"Author {author} not recognized. Supported authors are: "
+                    "Apulée, Cicéron, De Pallio, Apologeticum."
+                )
+            },
+            status_code=404,
+        )
 
 
 @app.get("/author_classification/get_wordcloud")
