@@ -110,6 +110,7 @@ class EmbeddingFactory:
             model_name (str): Name of the model to save.
             epochs (int): Number of epochs to train the model.
             batch_size (int): Size of the batches for training.
+
         Returns:
             tuple: A tuple containing the trained model and a list of training logs.
         """
@@ -161,6 +162,7 @@ class EmbeddingFactory:
         Args:
             X_test (np.ndarray): Testing data sequences.
             y_test (np.ndarray): Testing data labels.
+
         Returns:
             float: The accuracy of the model on the test data.
 

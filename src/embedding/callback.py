@@ -10,6 +10,7 @@ class TrainingLogger(Callback):
     def on_epoch_end(self, epoch, logs=None) -> None:
         """
         Called at the end of an epoch. Captures logs and appends them to self.logs.
+
         Args:
             epoch (int): The index of the epoch.
             logs (dict, optional): A dictionary containing metrics like loss, accuracy, etc.

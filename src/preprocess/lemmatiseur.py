@@ -17,8 +17,10 @@ class PyrrhaLemmatiseur:
     def obtain_corpus_lemma(self, output_file: str) -> str:
         """
         Reads TSV files from the specified folder, concatenates the text, and writes it to an output file.
+
         Args:
             output_file (str): The name of the output file where the concatenated text will be saved.
+
         Returns:
             str: The path to the output file.
         """
@@ -55,8 +57,10 @@ class PyrrhaLemmatiseur:
         """
         Reads the raw text lemma file, processes it to remove punctuation, convert to lowercase,
         remove digits, and stop words, and returns a list of lists containing the cleaned words.
+
         Args:
             raw_text_lemma_file (str): The name of the raw text lemma file without extension.
+
         Returns:
             list[list[str]]: A list of lists, where each inner list contains cleaned words from the text.
         """

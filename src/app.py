@@ -326,6 +326,7 @@ async def new_embedding(
         model_name (str): Name of the keras model to load. Defaults to "test" if an empty string is provided.
         positive_words (str): Words separated by whitespace to be added for the new embedding.
         negative_words (str): Words separated by whitespace to be subtracted for the new embedding.
+
     Returns:
         dict: A dictionary containing the new embedding, corpus name, model name, positive words, negative words,
               and the top 10 nearest words to the new embedding.
@@ -377,8 +378,10 @@ async def new_embedding(
 async def text_annotation_page(request: Request) -> HTMLResponse:
     """
     Asynchronously renders the text annotation page with various functionalities.
+
     Args:
         request (Request): The FastAPI request object.
+
     Returns:
         HTMLResponse: An HTML response containing the text annotation page with various functionalities.
     """
@@ -510,11 +513,14 @@ async def xml_to_html(
 ) -> HTMLResponse:
     """
     Asynchronously converts a specified XML file to an interactive HTML representation.
+
     Args:
         request (Request): The FastAPI request object.
         xml_path (str): Path to the XML file.
+
     Returns:
         HTMLResponse: An HTML response containing the interactive representation of the XML file.
+
     Raises:
         Response: If the specified XML file does not exist, a 404 response is returned with an error message.
     """
@@ -720,6 +726,7 @@ async def get_clean_author_text(author: str = Query(description="Author name")) 
 @app.get("/author_classification/get_wordcloud")
 async def get_wordcloud() -> JSONResponse:
     """Asynchronously creates word clouds for each author in the dataset.
+
     Returns:
         JSONResponse: A JSON response indicating that word clouds have been created for each author.
     """
@@ -740,8 +747,10 @@ async def get_wordcloud() -> JSONResponse:
 async def plot_wordclouds(request: Request) -> HTMLResponse:
     """
     Asynchronously renders the word clouds for each author in the dataset.
+
     Args:
         request (Request): The FastAPI request object.
+
     Returns:
         HTMLResponse: An HTML response containing the rendered word clouds for each author.
     """
@@ -768,6 +777,7 @@ async def get_df() -> JSONResponse:
 async def get_labels_classes() -> JSONResponse:
     """
     Asynchronously retrieves the label classes used in the author classification dataset.
+
     Returns:
         JSONResponse: A JSON response containing the label classes.
     """
@@ -805,6 +815,7 @@ async def plot_top_words(request: Request) -> HTMLResponse:
 
     Args:
         request (Request): The FastAPI request object.
+
     Returns:
         HTMLResponse: An HTML response containing the rendered top words for each author.
     """
@@ -873,9 +884,11 @@ async def predict_author(
 ) -> JSONResponse:
     """
     Asynchronously predicts the author of a given text using various classifiers.
+
     Args:
         clf_type (str): Type of classifier to use. Defaults to "LinearSVC" if an empty string is provided.
         text_to_predict (str): Text on which to predict the author.
+
     Returns:
         JSONResponse: A JSON response containing the predictions and probabilities for each classifier.
     """

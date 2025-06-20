@@ -35,8 +35,10 @@ ANNOTATIONS = {
 def get_model_summary(model: Model) -> str:
     """
     Generates a summary of the Keras model.
+
     Args:
         model (Model): A Keras model instance.
+
     Returns:
         str: A string representation of the model summary.
     """
@@ -51,8 +53,10 @@ def get_model_summary(model: Model) -> str:
 def parse_tei(xml_path: str) -> dict:
     """
     Parses a TEI XML file and extracts the title and body as HTML.
+
     Args:
         xml_path (str): The file path to the TEI XML file.
+
     Returns:
         dict: A dictionary containing the title and body as HTML.
     """

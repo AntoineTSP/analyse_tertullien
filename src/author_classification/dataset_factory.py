@@ -38,8 +38,10 @@ class DatasetFactory:
         """
         Reads a text file, removes punctuation, converts to lowercase,
         removes digits, tokenizes the text, and removes stop words.
+
         Args:
             text_path (str): The path to the text file to be processed.
+
         Returns:
             str: The cleaned text as a single string.
         """
@@ -119,8 +121,10 @@ class DatasetFactory:
     def encode_variable(self, df: pd.DataFrame) -> pd.Series:
         """
         Encode the 'author' column in the DataFrame using Label Encoding.
+
         Args:
             df (pd.DataFrame): The DataFrame containing the 'author' column.
+
         Returns:
             pd.DataFrame: The DataFrame with an additional 'author_encoded' column.
             LabelEncoder: The fitted LabelEncoder instance.
@@ -136,9 +140,11 @@ class DatasetFactory:
     def split_train_test(self, df: pd.DataFrame, test_size: float = 0.2) -> tuple:
         """
         Split the DataFrame into training and testing sets.
+
         Args:
             df (pd.DataFrame): The DataFrame to split.
             test_size (float): The proportion of the dataset to include in the test split.
+
         Returns:
             tuple: A tuple containing the training and testing sets for both features and labels.
         """
@@ -155,9 +161,11 @@ class DatasetFactory:
     def get_label_to_author(self, le: LabelEncoder, y_train: np.array) -> dict:
         """
         Create a mapping from encoded labels to author names.
+
         Args:
             le (LabelEncoder): The fitted LabelEncoder instance.
             y_train (np.ndarray): The training labels.
+
         Returns:
             dict: A dictionary mapping encoded labels to author names.
         """
@@ -168,10 +176,12 @@ class DatasetFactory:
     def get_proportion_label_in_sets(self, y_train: np.ndarray, y_test: np.ndarray, le: LabelEncoder) -> dict:
         """
         Calculate the proportion of each author in the training and testing sets.
+
         Args:
             y_train (np.ndarray): The training labels.
             y_test (np.ndarray): The testing labels.
             le (LabelEncoder): The fitted LabelEncoder instance.
+
         Returns:
             dict: A dictionary containing the proportion of each author in both training and testing sets.
         """
