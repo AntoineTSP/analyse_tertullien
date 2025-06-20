@@ -1,0 +1,21 @@
+#| filename: "deployment/ingress.yaml"
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tertullien-ingress
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - tertullien.lab.sspcloud.fr
+  rules:
+  - host: tertullien.lab.sspcloud.fr
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: tertullien-service
+            port:
+              number: 80

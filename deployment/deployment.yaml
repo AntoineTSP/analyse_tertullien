@@ -6,20 +6,17 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: tertullien
+      app: tertullien-api
   template:
     metadata:
       labels:
-        app: tertullien
+        app: tertullien-api
     spec:
       containers:
       - name: tertullien-container
-        image: votre_compte_docker_hub/application:latest
+        image: antoineklein/tertullien:latest
         ports:
         - containerPort: 9555
-        envFrom:
-        - configMapRef:
-            name: tertullien-env
         volumeMounts:
         - name: scripts-volume
           mountPath: /usr/src/app/scripts
