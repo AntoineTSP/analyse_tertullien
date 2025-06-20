@@ -19,11 +19,4 @@ services:
       - ./data:/usr/src/app/data
       - ./plot:/usr/src/app/plot
 
-    environment:
-      - AZURE_SPONSOR_API_KEY=${AZURE_SPONSOR_API_KEY}
-      - AZURE_OPENAI_ENDPOINT=https://jumbomana-sponsorship.openai.azure.com
-      - OPENAI_API_VERSION=2024-10-21
-    env_file:
-      - path: ./.env
-        required: false
     tty: true
