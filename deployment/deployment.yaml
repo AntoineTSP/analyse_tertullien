@@ -17,17 +17,3 @@ spec:
         image: antoineklein/tertullien:latest
         ports:
         - containerPort: 9555
-        volumeMounts:
-        - name: scripts-volume
-          mountPath: /usr/src/app/scripts
-        - name: data-volume
-          mountPath: /usr/src/app/data
-        - name: plot-volume
-          mountPath: /usr/src/app/plot
-      volumes:
-      - name: scripts-volume
-        emptyDir: {}
-      - name: data-volume
-        emptyDir: {}
-      - name: plot-volume
-        emptyDir: {}
