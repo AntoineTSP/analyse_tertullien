@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tertullien-service
+spec:
+  selector:
+    app: tertullien
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 9555
+  type: LoadBalancer  # Or ClusterIP/NodePort depending on Onyxia setup

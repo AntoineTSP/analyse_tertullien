@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tertullien-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tertullien
+  template:
+    metadata:
+      labels:
+        app: tertullien
+    spec:
+      containers:
+      - name: tertullien-container
+        image: votre_compte_docker_hub/application:latest
+        ports:
+        - containerPort: 9555
+        envFrom:
+        - configMapRef:
+            name: tertullien-env
+        volumeMounts:
+        - name: scripts-volume
+          mountPath: /usr/src/app/scripts
+        - name: data-volume
+          mountPath: /usr/src/app/data
+        - name: plot-volume
+          mountPath: /usr/src/app/plot
+      volumes:
+      - name: scripts-volume
+        emptyDir: {}
+      - name: data-volume
+        emptyDir: {}
+      - name: plot-volume
+        emptyDir: {}
