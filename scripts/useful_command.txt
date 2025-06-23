@@ -19,7 +19,7 @@ curl http://localhost:9555/
 
 kubectl describe pod <name_pod>
 kubectl get pods -l app=tertullien-api
-kubectl logs <name_pod>
+kubectl logs -f <name_pod>
 
 
 
